@@ -8,7 +8,7 @@
 
 param(
     [Parameter(Mandatory=$false)]
-    [string]$CommitMessage = "Update website content"
+    [string]$CommitMessage = ""
 )
 
 # ============================================================================
@@ -110,14 +110,14 @@ function Write-DeploymentSummary {
     
     $summary = @"
 
-===========================================
+==========================================
 DEPLOYMENT SUMMARY
-===========================================
+==========================================
 Deployment End: $deploymentEnd
 Duration: $($duration.Minutes)m $($duration.Seconds)s
 Status: SUCCESS
 Log File: $LOG_FILE
-===========================================
+==========================================
 "@
     
     Add-Content -Path $LOG_FILE -Value $summary
@@ -132,19 +132,82 @@ function Write-ErrorSummary {
     
     $errorSummary = @"
 
-===========================================
+==========================================
 DEPLOYMENT FAILED
-===========================================
+==========================================
 Deployment End: $deploymentEnd
 Duration: $($duration.Minutes)m $($duration.Seconds)s
 Status: FAILED
 Error: $ErrorMessage
 Log File: $LOG_FILE
-===========================================
+==========================================
 "@
     
     Add-Content -Path $LOG_FILE -Value $errorSummary
     Write-Host $errorSummary -ForegroundColor $Red
+}
+
+# ============================================================================
+# COMMIT MESSAGE GENERATION
+# ============================================================================
+
+function Generate-CommitMessage {
+    Write-Log "Generating commit message..." "INFO"
+    
+    # Get list of changed files
+    $changedFiles = git status --porcelain | ForEach-Object {
+        $parts = $_ -split '\s+'
+        $status = $parts[0]
+        $filename = $parts[1]
+        "$status $filename"
+    }
+    
+    # Analyze changes to generate appropriate message
+    $message = ""
+    
+    # Check for specific file types
+    if ($changedFiles -match "M.*\.html") {
+        $message = "Update website content"
+    } elseif ($changedFiles -match "M.*\.css") {
+        $message = "Update styling and design"
+    } elseif ($changedFiles -match "M.*\.js") {
+        $message = "Update JavaScript functionality"
+    } elseif ($changedFiles -match "M.*\.md") {
+        $message = "Update documentation"
+    } elseif ($changedFiles -match "A.*") {
+        $message = "Add new files"
+    } elseif ($changedFiles -match "D.*") {
+        $message = "Remove files"
+    } else {
+        $message = "Update project files"
+    }
+    
+    # Add timestamp for uniqueness
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
+    $message = "$message ($timestamp)"
+    
+    Write-Log "Generated commit message: $message" "SUCCESS"
+    return $message
+}
+
+function Validate-CommitMessage {
+    param([string]$Message)
+    
+    if ([string]::IsNullOrWhiteSpace($Message)) {
+        Write-Log "Error: Commit message cannot be empty!" "ERROR"
+        Write-Host ""
+        Write-Host "❌ Deployment failed: No commit message provided" -ForegroundColor $Red
+        Write-Host "Usage: .\deploy.ps1 'Your commit message'" -ForegroundColor $Yellow
+        Write-Host "Or: .\deploy.ps1 (will auto-generate message)" -ForegroundColor $Yellow
+        Write-Host ""
+        exit 1
+    }
+    
+    if ($Message.Length -gt 100) {
+        Write-Log "Warning: Commit message is very long ($($Message.Length) chars)" "WARNING"
+    }
+    
+    return $Message
 }
 
 # ============================================================================
@@ -310,8 +373,15 @@ function Start-Deployment {
         # Step 3: Check Git remote
         Test-GitRemote
         
-        # Step 4: Commit changes if any
+        # Step 4: Handle commit message
         if ($hasChanges) {
+            # Generate or validate commit message
+            if ([string]::IsNullOrWhiteSpace($CommitMessage)) {
+                $CommitMessage = Generate-CommitMessage
+            } else {
+                $CommitMessage = Validate-CommitMessage -Message $CommitMessage
+            }
+            
             Invoke-GitCommit -Message $CommitMessage
         } else {
             Write-Log "No changes to deploy" "WARNING"
@@ -368,11 +438,12 @@ if ($args[0] -eq "--help" -or $args[0] -eq "-h") {
     Write-Host ""
     Write-Host "This script will:" -ForegroundColor $Yellow
     Write-Host "  1. Check Git status and prerequisites" -ForegroundColor $White
-    Write-Host "  2. Commit changes with your message" -ForegroundColor $White
-    Write-Host "  3. Push to GitHub" -ForegroundColor $White
-    Write-Host "  4. Trigger Netlify deployment" -ForegroundColor $White
-    Write-Host "  5. Log all activities to logs\deployment_[timestamp].log" -ForegroundColor $White
-    Write-Host "  6. Clean up old logs (keeps max $MAX_LOGS logs)" -ForegroundColor $White
+    Write-Host "  2. Generate commit message if none provided" -ForegroundColor $White
+    Write-Host "  3. Commit changes with message" -ForegroundColor $White
+    Write-Host "  4. Push to GitHub" -ForegroundColor $White
+    Write-Host "  5. Trigger Netlify deployment" -ForegroundColor $White
+    Write-Host "  6. Log all activities to logs\deployment_[timestamp].log" -ForegroundColor $White
+    Write-Host "  7. Clean up old logs (keeps max $MAX_LOGS logs)" -ForegroundColor $White
     Write-Host ""
     exit 0
 }

@@ -2,23 +2,23 @@
 
 ## Overview
 
-This guide explains how to deploy changes to the limebird.org website using the automated deployment scripts.
+This guide explains how to deploy changes to the limebird.org website using the manual deployment script. The deployment process is intentionally manual to provide full control over when and what gets deployed.
 
 ## Quick Start
 
-### Option 1: Using Batch File (Recommended)
-```cmd
-deploy.bat "Your commit message here"
-```
-
-### Option 2: Using PowerShell Directly
+### Option 1: Using PowerShell Script (Recommended)
 ```powershell
 .\deploy.ps1 "Your commit message here"
 ```
 
-### Option 3: Default Commit Message
+### Option 2: Using Batch File Wrapper
 ```cmd
-deploy.bat
+deploy.bat "Your commit message here"
+```
+
+### Option 3: Auto-Generated Commit Message
+```powershell
+.\deploy.ps1
 ```
 
 ## What the Deployment Script Does
@@ -31,11 +31,12 @@ deploy.bat
 2. **Git Operations**
    - Checks for uncommitted changes
    - Verifies Git remote is correct
-   - Commits changes with your message
+   - Generates commit message if none provided
+   - Commits changes with message
    - Pushes to GitHub main branch
 
 3. **Netlify Deployment**
-   - Triggers automatic deployment on Netlify
+   - Triggers manual deployment on Netlify
    - Provides deployment URLs
    - Shows deployment status information
 
@@ -43,6 +44,16 @@ deploy.bat
    - Logs all activities to `logs\deployment_[timestamp].log`
    - Automatically cleans up old logs (keeps max 10 logs)
    - Provides detailed deployment summaries
+
+## Manual Deployment Philosophy
+
+This deployment system is designed for **manual control** rather than automation:
+
+- **Intentional Deployments:** You decide when to deploy
+- **Review Process:** Check changes before committing
+- **Quality Control:** Manual verification of changes
+- **Audit Trail:** Complete logging of all deployments
+- **No Auto-Triggers:** No automatic deployments from external sources
 
 ## Deployment URLs
 
@@ -122,6 +133,10 @@ type logs\deployment_2024-01-15_14-30-25.log
 - This is normal if no files have been modified
 - Make changes to your files first, then run the deployment script
 
+**Empty commit message**
+- Script will auto-generate a commit message based on file changes
+- If you want a custom message, provide it as a parameter
+
 **Log file issues**
 - Check that the `logs` directory exists
 - Ensure you have write permissions in the project directory
@@ -155,18 +170,28 @@ If the script fails, you can deploy manually:
 
 ## Best Practices
 
+### Manual Deployment Workflow
+1. **Make Changes:** Edit files in your local environment
+2. **Test Locally:** Verify changes work as expected
+3. **Review Changes:** Use `git status` and `git diff` to review
+4. **Manual Deployment:** Run `.\deploy.ps1 "descriptive message"` or `.\deploy.ps1` for auto-generated message
+5. **Verify Deployment:** Check the live site after deployment
+
 ### Commit Messages
 - Use descriptive, present-tense messages
 - Keep messages under 50 characters
-- Examples:
+- **Auto-Generation:** If no message provided, script generates one based on file changes
+- **Examples:**
   - ✅ "Update contact information"
   - ✅ "Fix typo in hero section"
+  - ✅ "Update website content (2024-01-15 14:30)" (auto-generated)
   - ❌ "Updated stuff"
 
 ### Before Deploying
 - Test changes locally first
 - Review your changes with `git status`
 - Ensure all files are saved
+- **Manual Review:** Always review changes before deploying
 
 ### After Deploying
 - Check the live site at https://limebird.org
@@ -182,6 +207,21 @@ $GITHUB_REPO = "limebird01/limebird-site"
 $GIT_BRANCH = "main"
 $NETLIFY_SITE = "limebirdorg.netlify.app"
 ```
+
+## Manual vs Automated Deployment
+
+### This System: Manual Deployment
+- ✅ **Full Control:** You decide when to deploy
+- ✅ **Quality Assurance:** Review changes before deployment
+- ✅ **Audit Trail:** Complete logging of all deployments
+- ✅ **No Surprises:** No unexpected deployments
+- ✅ **Security:** No automated triggers from external sources
+
+### Not Used: Automated Deployment
+- ❌ No automatic deployments from Git pushes
+- ❌ No CI/CD pipelines
+- ❌ No automated testing triggers
+- ❌ No webhook-based deployments
 
 ## Support
 

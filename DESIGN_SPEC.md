@@ -227,6 +227,12 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 - **Fonts:** System fonts for performance
 - **Constants:** Centralized in `constants.js` for efficient updates
 
+### Deployment Strategy
+- **Manual Deployment:** Intentional, controlled deployments
+- **Quality Control:** Review process before deployment
+- **Audit Trail:** Complete logging of all deployments
+- **No Automation:** No automatic triggers or CI/CD pipelines
+
 ### Core Web Vitals
 - **LCP:** < 2.5s (Largest Contentful Paint)
 - **FID:** < 100ms (First Input Delay)
@@ -305,6 +311,13 @@ assets\
 constants.js - Centralized website addresses and configuration
 ```
 
+### Deployment Scripts
+```
+deploy.ps1 - Manual deployment script with logging
+deploy.bat - Batch file wrapper for easy execution
+DEPLOYMENT_GUIDE.md - Complete deployment documentation
+```
+
 ---
 
 ## Version Control
@@ -319,6 +332,12 @@ constants.js - Centralized website addresses and configuration
 - **Type:** Feature, bug fix, or enhancement
 - **Description:** What was changed and why
 - **Impact:** How it affects the user experience
+
+### Deployment Philosophy
+- **Manual Control:** All deployments are intentional and manual
+- **Quality Assurance:** Changes reviewed before deployment
+- **Audit Trail:** Complete logging of deployment history
+- **No Automation:** No automatic deployments or triggers
 
 ---
 
