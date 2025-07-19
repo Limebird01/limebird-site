@@ -1,0 +1,33 @@
+DetailsRenew
+Status
+Verifying -
+Resend
+|
+Check
+Registration Date
+Jul 19, 2025
+Renewal Date
+Jul 19, 2026
+Registration Type
+Regular
+Renewal Price
+$15.99
+Whois Privacy
+On
+Transfer Lock
+On
+Auto-renew
+On
+Authorization Code -Retrieve
+Edit
+Nameservers (2)Edit
+ns1.hover.com
+ns2.hover.com
+Registration RecordsEdit
+Owner
+Daniel Vernon
+None
+6551 Pennacook Court
+Columbia MD US
++1.4103701241
+Limebird73@gmail.com 
