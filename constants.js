@@ -55,6 +55,9 @@ export const EMAIL = {
     // Primary contact email
     CONTACT: 'dan@limebird.org',
     
+    // Support email
+    SUPPORT: 'support@limebird.org',
+    
     // Email forwarding
     FORWARD_TO: 'limebird73@gmail.com',
     

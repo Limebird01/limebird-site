@@ -8,7 +8,8 @@ Limebird.org is a platform for innovation, creativity, and the future of digital
 
 ## Contact
 
-- **Email:** [dan@limebird.org](mailto:dan@limebird.org)
+- **Primary Email:** [dan@limebird.org](mailto:dan@limebird.org)
+- **Support Email:** [support@limebird.org](mailto:support@limebird.org)
 - **Domain:** limebird.org
 
 ## Project Setup Documentation
@@ -32,6 +33,7 @@ This document outlines the complete setup process for limebird.org, including do
 | Step | From | To | Status |
 |------|------|----|--------|
 | Email Forwarding | dan@limebird.org | limebird73@gmail.com | ✅ Complete |
+| Support Email Setup | support@limebird.org | limebird73@gmail.com | ✅ Complete |
 | Gmail "Send Mail As" | Gmail settings | dan@limebird.org alias | ✅ Complete |
 | SMTP Configuration | Gmail SMTP | smtp.gmail.com:587 | ✅ Complete |
 | App Password Setup | Google Account | 16-character app password | ✅ Complete |
