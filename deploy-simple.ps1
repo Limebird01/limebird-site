@@ -22,10 +22,12 @@ if ($status) {
     # Add and commit
     Write-Log "Adding files to Git"
     git add .
+    Start-Sleep -Seconds 1
     
     $commitMessage = "Update website content ($(Get-Date -Format 'yyyy-MM-dd HH:mm'))"
     Write-Log "Committing with message: $commitMessage"
     git commit -m $commitMessage
+    Start-Sleep -Seconds 1
     
     # Push
     Write-Log "Pushing to GitHub"
@@ -40,6 +42,11 @@ if ($status) {
         Write-Log "Deployment failed - push unsuccessful"
         Write-Host "Deployment failed!" -ForegroundColor Red
     }
+    
+    # Close PowerShell after deployment
+    Write-Host "Closing PowerShell..." -ForegroundColor Yellow
+    Start-Sleep -Seconds 2
+    exit
 } else {
     Write-Log "No changes to deploy"
     Write-Host "No changes to deploy" -ForegroundColor Yellow
