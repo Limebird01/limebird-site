@@ -31,8 +31,15 @@ if ($status) {
     Write-Log "Pushing to GitHub"
     git push origin main
     
-    Write-Log "Deployment completed successfully!"
-    Write-Host "Deployment completed!" -ForegroundColor Green
+    # Check if push was successful
+    if ($LASTEXITCODE -eq 0) {
+        Write-Log "Deployment completed successfully!"
+        Write-Host "Deployment completed!" -ForegroundColor Green
+        Write-Host "🌐 Live at: https://limebird.org" -ForegroundColor Cyan
+    } else {
+        Write-Log "Deployment failed - push unsuccessful"
+        Write-Host "Deployment failed!" -ForegroundColor Red
+    }
 } else {
     Write-Log "No changes to deploy"
     Write-Host "No changes to deploy" -ForegroundColor Yellow
