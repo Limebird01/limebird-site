@@ -28,7 +28,7 @@ git push origin main
 
 2. **Netlify Deployment**
    - Automatically triggers deployment on Netlify
-   - Changes appear at https://limebird.org within 1-3 minutes
+   - Changes appear at https://limebird.org within 0.1-0.2 hours
 
 3. **Simple Output**
    - Colored console output for easy reading
@@ -139,9 +139,9 @@ If the script fails, you can deploy manually:
 
 ## Deployment Timeline
 
-- **Git operations:** 10-30 seconds
-- **Netlify build:** 1-3 minutes
-- **DNS propagation:** 5-30 minutes (if DNS changes)
+- **Git operations:** 0.1-0.5 hours
+- **Netlify build:** 0.1-0.2 hours
+- **DNS propagation:** 0.1-0.5 hours (if DNS changes)
 
 ## Best Practices
 

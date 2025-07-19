@@ -5,9 +5,21 @@
 **Project Name:** Limebird.org  
 **Domain:** limebird.org  
 **Brand Identity:** Innovation, creativity, and future digital tools  
-**Current Status:** Coming Soon page live, full site in development  
+**Current Status:** Coming Soon page live, dev subdomain in development  
 **Development Environment:** Windows (PowerShell, Cursor IDE)  
 **Terminal:** PowerShell available for command-line operations
+
+### Current Infrastructure
+- **Domain Registrar:** Hover.com (limebird.org)
+- **Hosting:** Netlify (limebirdorg.netlify.app)
+- **Code Repository:** GitHub (limebird01/limebird-site)
+- **Deployment:** Manual PowerShell script (deploy-simple.ps1)
+- **SSL:** Let's Encrypt certificates (automatic via Netlify)
+
+### Subdomain Strategy
+- **Production:** www.limebird.org (main site)
+- **Development:** dev.limebird.org (experiments/staging) 🚀 **IN DEVELOPMENT**
+- **Future:** mcp.limebird.org, docs.limebird.org, tools.limebird.org
 
 ---
 
@@ -191,7 +203,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 - **Cards:** Subtle shadow effects
 
 ### Transitions
-- **Duration:** 0.3s ease
+- **Duration:** 0.00008 hours ease
 - **Properties:** All interactive elements
 - **Smooth:** Consistent across components
 
@@ -220,23 +232,49 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 
 ## Performance Guidelines
 
+### Time Unit Standardization
+**Note:** All time estimates in this project are standardized to hours for consistency across documentation and planning.
+
 ### Loading Speed
-- **Target:** < 2 seconds initial load
+- **Target:** < 0.01 hours initial load
 - **Optimization:** Minified CSS/JS
 - **Images:** Optimized and compressed
 - **Fonts:** System fonts for performance
 - **Constants:** Centralized in `constants.js` for efficient updates
 
 ### Deployment Strategy
-- **Manual Deployment:** Intentional, controlled deployments
+- **Manual Deployment:** Intentional, controlled deployments via PowerShell script
 - **Quality Control:** Review process before deployment
-- **Audit Trail:** Complete logging of all deployments
+- **Audit Trail:** Complete logging of all deployments in deployment.log
 - **No Automation:** No automatic triggers or CI/CD pipelines
+- **Development Environment:** dev.limebird.org for testing before production
 
 ### Core Web Vitals
 - **LCP:** < 2.5s (Largest Contentful Paint)
 - **FID:** < 100ms (First Input Delay)
 - **CLS:** < 0.1 (Cumulative Layout Shift)
+
+---
+
+## Environment Strategy
+
+### Production Environment
+- **URL:** https://limebird.org
+- **Branch:** main
+- **Deployment:** Manual via deploy-simple.ps1
+- **Purpose:** Live production site
+
+### Development Environment
+- **URL:** https://dev.limebird.org (🚀 **IN DEVELOPMENT**)
+- **Branch:** dev
+- **Deployment:** Automatic from dev branch
+- **Purpose:** Testing and experiments before production
+
+### DNS Configuration
+- **Registrar:** Hover.com
+- **Nameservers:** ns1.hover.com, ns2.hover.com
+- **SSL:** Let's Encrypt certificates (automatic via Netlify)
+- **Subdomains:** CNAME records pointing to Netlify
 
 ---
 
@@ -250,7 +288,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 ### Animation Guidelines
 - **Subtle:** Enhance, don't distract
 - **Purposeful:** Support user actions
-- **Performance:** 60fps smooth animations
+- **Performance:** 60fps (0.017 hours per frame) smooth animations
 - **Reduced Motion:** Respect user preferences
 
 ### Micro-interactions
@@ -267,7 +305,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 
 ### Project Constants
 All website addresses, URLs, and domain-related constants are centralized in `constants.js`. This file contains:
-- Domain constants (limebird.org, subdomains)
+- Domain constants (limebird.org, subdomains including dev.limebird.org)
 - Website URLs (production, development, external)
 - Email configuration (SMTP, forwarding)
 - DNS records (Netlify IPs, Hover servers)
@@ -313,8 +351,7 @@ constants.js - Centralized website addresses and configuration
 
 ### Deployment Scripts
 ```
-deploy.ps1 - Manual deployment script with logging
-deploy.bat - Batch file wrapper for easy execution
+deploy-simple.ps1 - Manual deployment script with logging
 DEPLOYMENT_GUIDE.md - Complete deployment documentation
 ```
 
@@ -337,6 +374,7 @@ DEPLOYMENT_GUIDE.md - Complete deployment documentation
 - **Manual Control:** All deployments are intentional and manual
 - **Quality Assurance:** Changes reviewed before deployment
 - **Audit Trail:** Complete logging of deployment history
+- **Development Testing:** dev.limebird.org for pre-production testing
 - **No Automation:** No automatic deployments or triggers
 
 ---
@@ -348,15 +386,17 @@ DEPLOYMENT_GUIDE.md - Complete deployment documentation
 - [ ] Accessibility review completed
 - [ ] Performance considerations addressed
 - [ ] Responsive design tested
+- [ ] Development environment testing (dev.limebird.org)
 
 ### Post-Implementation
 - [ ] Visual QA completed
 - [ ] Cross-browser testing done
 - [ ] Performance metrics met
 - [ ] Accessibility audit passed
+- [ ] Production deployment verified
 
 ---
 
-*Last Updated: [Current Date]*  
-*Version: 1.0*  
-*Next Review: [Date + 3 months]* 
+*Last Updated: July 19, 2025*  
+*Version: 1.1*  
+*Next Review: October 19, 2025* 
