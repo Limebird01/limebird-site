@@ -30,11 +30,11 @@
 
 **Objective:** Host your site with GitHub + Netlify (already connected)
 
-- [ ] Create a new GitHub repository (e.g., `limebird-site`)
-- [ ] Add a basic `index.html` (“Coming Soon” page)
-- [ ] Push to GitHub
-- [ ] Log into Netlify → Import site from GitHub
-- [ ] Confirm automatic build and deploy
+- [x] Create a new GitHub repository (e.g., `limebird-site`)
+- [x] Add a basic `index.html` ("Coming Soon" page)
+- [x] Push to GitHub
+- [x] Log into Netlify → Import site from GitHub
+- [x] Confirm automatic build and deploy
 
 ---
 
@@ -42,13 +42,13 @@
 
 **Objective:** Point limebird.org to your Netlify site
 
-- [ ] In Netlify → Add custom domain → `www.limebird.org`
-- [ ] In Hover DNS:
-  - [ ] Add CNAME record:
+- [x] In Netlify → Add custom domain → `www.limebird.org`
+- [x] In Hover DNS:
+  - [x] Add CNAME record:
         - **Name:** `www`
-        - **Value:** `your-netlify-site.netlify.app`
-  - [ ] (Optional) Add A record to redirect root to www
-- [ ] Enable automatic HTTPS via Netlify (Let’s Encrypt)
+        - **Value:** `limebirdorg.netlify.app`
+  - [x] (Optional) Add A record to redirect root to www
+- [x] Enable automatic HTTPS via Netlify (Let's Encrypt)
 
 ---
 
