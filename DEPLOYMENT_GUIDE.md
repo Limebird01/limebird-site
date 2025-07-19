@@ -8,42 +8,31 @@ This guide explains how to deploy changes to the limebird.org website using the 
 
 ### Option 1: Using PowerShell Script (Recommended)
 ```powershell
-.\deploy.ps1 "Your commit message here"
+.\deploy-simple.ps1
 ```
 
-### Option 2: Using Batch File Wrapper
-```cmd
-deploy.bat "Your commit message here"
-```
-
-### Option 3: Auto-Generated Commit Message
+### Option 2: Manual Git Commands
 ```powershell
-.\deploy.ps1
+git add .
+git commit -m "Your commit message here"
+git push origin main
 ```
 
 ## What the Deployment Script Does
 
-1. **Checks Prerequisites**
-   - Verifies Git is installed
-   - Confirms you're in the correct directory
-   - Checks for required files (index.html, README.md, constants.js)
-
-2. **Git Operations**
+1. **Git Operations**
    - Checks for uncommitted changes
-   - Verifies Git remote is correct
-   - Generates commit message if none provided
+   - Generates auto-commit message with timestamp
    - Commits changes with message
    - Pushes to GitHub main branch
 
-3. **Netlify Deployment**
-   - Triggers manual deployment on Netlify
-   - Provides deployment URLs
-   - Shows deployment status information
+2. **Netlify Deployment**
+   - Automatically triggers deployment on Netlify
+   - Changes appear at https://limebird.org within 1-3 minutes
 
-4. **Logging & Cleanup**
-   - Logs all activities to `logs\deployment_[timestamp].log`
-   - Automatically cleans up old logs (keeps max 10 logs)
-   - Provides detailed deployment summaries
+3. **Simple Output**
+   - Colored console output for easy reading
+   - Shows deployment status and progress
 
 ## Manual Deployment Philosophy
 
@@ -64,53 +53,40 @@ After deployment, your changes will be available at:
 
 ## Examples
 
-### Update Contact Information
-```cmd
-deploy.bat "Update contact email and phone number"
+### Using the Script (Recommended)
+```powershell
+.\deploy-simple.ps1
 ```
 
-### Fix Typo
-```cmd
-deploy.bat "Fix typo in hero section"
+### Manual Git Commands
+```powershell
+git add .
+git commit -m "Update contact information"
+git push origin main
 ```
 
-### Add New Feature
-```cmd
-deploy.bat "Add dark mode toggle feature"
+### Custom Commit Message
+```powershell
+git add .
+git commit -m "Fix typo in hero section"
+git push origin main
 ```
 
-### Content Update
-```cmd
-deploy.bat "Update about section with new company information"
-```
+## Simple Deployment
 
-## Logging
+The current deployment system is intentionally simple and reliable:
 
-### Log Files
-The deployment script automatically creates detailed logs for each deployment:
+### What It Does
+- ✅ **Checks for changes** in your Git repository
+- ✅ **Auto-generates commit messages** with timestamps
+- ✅ **Commits and pushes** to GitHub
+- ✅ **Triggers Netlify deployment** automatically
+- ✅ **Shows colored output** for easy reading
 
-- **Location:** `logs\deployment_[timestamp].log`
-- **Format:** Timestamped entries with log levels (INFO, SUCCESS, WARNING, ERROR)
-- **Retention:** Automatically keeps the 10 most recent logs
-- **Cleanup:** Old logs are automatically deleted to save space
-
-### Log Levels
-- **INFO:** General information and progress updates
-- **SUCCESS:** Successful operations (green in console)
-- **WARNING:** Non-critical issues (yellow in console)
-- **ERROR:** Critical failures (red in console)
-
-### Viewing Logs
-```cmd
-# View the most recent log
-type logs\deployment_*.log | Select-Object -Last 1
-
-# View all logs
-dir logs\deployment_*.log
-
-# View specific log file
-type logs\deployment_2024-01-15_14-30-25.log
-```
+### No Complex Logging
+- The script provides immediate feedback in the console
+- No log files to manage or clean up
+- Simple, direct output shows deployment status
 
 ## Troubleshooting
 
@@ -134,13 +110,12 @@ type logs\deployment_2024-01-15_14-30-25.log
 - Make changes to your files first, then run the deployment script
 
 **Empty commit message**
-- Script will auto-generate a commit message based on file changes
-- If you want a custom message, provide it as a parameter
+- Script auto-generates a commit message with timestamp
+- For custom messages, use manual Git commands
 
-**Log file issues**
-- Check that the `logs` directory exists
-- Ensure you have write permissions in the project directory
-- Verify PowerShell execution policy allows script execution
+**Script execution issues**
+- Ensure PowerShell execution policy allows script execution
+- Run: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
 ### Manual Deployment Steps
 
@@ -174,16 +149,16 @@ If the script fails, you can deploy manually:
 1. **Make Changes:** Edit files in your local environment
 2. **Test Locally:** Verify changes work as expected
 3. **Review Changes:** Use `git status` and `git diff` to review
-4. **Manual Deployment:** Run `.\deploy.ps1 "descriptive message"` or `.\deploy.ps1` for auto-generated message
+4. **Deploy:** Run `.\deploy-simple.ps1` for auto-generated message, or use manual Git commands
 5. **Verify Deployment:** Check the live site after deployment
 
 ### Commit Messages
 - Use descriptive, present-tense messages
 - Keep messages under 50 characters
-- **Auto-Generation:** If no message provided, script generates one based on file changes
+- **Auto-Generation:** Script generates timestamped messages automatically
 - **Examples:**
-  - ✅ "Update contact information"
-  - ✅ "Fix typo in hero section"
+  - ✅ "Update contact information" (manual)
+  - ✅ "Fix typo in hero section" (manual)
   - ✅ "Update website content (2024-01-15 14:30)" (auto-generated)
   - ❌ "Updated stuff"
 
@@ -200,13 +175,11 @@ If the script fails, you can deploy manually:
 
 ## Script Configuration
 
-The deployment script uses these constants (in `deploy.ps1`):
-```powershell
-$PROJECT_NAME = "limebird.org"
-$GITHUB_REPO = "limebird01/limebird-site"
-$GIT_BRANCH = "main"
-$NETLIFY_SITE = "limebirdorg.netlify.app"
-```
+The deployment script (`deploy-simple.ps1`) is intentionally simple and focused:
+- **Auto-commit messages** with timestamps
+- **Git operations** (add, commit, push)
+- **Colored console output** for easy reading
+- **No complex configuration** needed
 
 ## Manual vs Automated Deployment
 
@@ -232,5 +205,5 @@ If you encounter issues:
 
 ---
 
-**Last Updated:** [Current Date]  
-**Script Version:** 1.0 
+**Last Updated:** January 2024  
+**Script Version:** Simple deployment script (deploy-simple.ps1) 
