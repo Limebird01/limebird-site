@@ -68,6 +68,51 @@ export const EMAIL = {
 };
 
 // ============================================================================
+// JIRA CONSTANTS
+// ============================================================================
+
+export const JIRA = {
+    // Jira account
+    ACCOUNT_EMAIL: 'Limebird73@gmail.com',
+    
+    // Jira Cloud instance
+    CLOUD_INSTANCE: 'limebird.atlassian.net',
+    
+    // API settings
+    API_BASE_URL: 'https://limebird.atlassian.net/rest/api/3',
+    
+    // Projects
+    PROJECTS: {
+        LIMEBIRD: {
+            KEY: 'SCRUM',
+            NAME: 'Limebird.org',
+            DESCRIPTION: 'Main website and development project'
+        },
+        TASKMASTER: {
+            KEY: 'TAS',
+            NAME: 'Taskmaster',
+            DESCRIPTION: 'Task management and productivity project'
+        }
+    },
+    
+    // Issue types
+    ISSUE_TYPES: {
+        EPIC: 'Epic',
+        BUG: 'Bug',
+        FEATURE: 'Feature',
+        TASK: 'Task'
+    },
+    
+    // Labels
+    LABELS: {
+        TOOLS: 'Tools',
+        DOCUMENTATION: 'Documentation',
+        BLOG: 'Blog',
+        WEBSITE: 'Website'
+    }
+};
+
+// ============================================================================
 // DNS RECORDS
 // ============================================================================
 
@@ -197,6 +242,52 @@ export function getAllSubdomainUrls() {
         docs: `https://${DOMAIN.DOCS}`,
         tools: `https://${DOMAIN.TOOLS}`
     };
+}
+
+/**
+ * Get Jira project URL
+ * @param {string} projectKey - The project key (e.g., 'SCRUM' or 'TAS')
+ * @returns {string} The Jira project URL
+ */
+export function getJiraProjectUrl(projectKey = 'SCRUM') {
+    return `https://${JIRA.CLOUD_INSTANCE}/browse/${projectKey}`;
+}
+
+/**
+ * Get Jira issue URL by issue key
+ * @param {string} issueKey - The Jira issue key (e.g., 'LIME-123')
+ * @returns {string} The Jira issue URL
+ */
+export function getJiraIssueUrl(issueKey) {
+    return `https://${JIRA.CLOUD_INSTANCE}/browse/${issueKey}`;
+}
+
+/**
+ * Validate Jira issue key format
+ * @param {string} issueKey - The issue key to validate
+ * @returns {boolean} True if valid Jira issue key format
+ */
+export function isValidJiraIssueKey(issueKey) {
+    const issueKeyPattern = /^[A-Z]+-\d+$/;
+    return issueKeyPattern.test(issueKey);
+}
+
+/**
+ * Get all Jira project information
+ * @returns {Object} Object containing all project details
+ */
+export function getAllJiraProjects() {
+    return JIRA.PROJECTS;
+}
+
+/**
+ * Get specific project information
+ * @param {string} projectKey - The project key (e.g., 'LIME' or 'TASK')
+ * @returns {Object|null} Project information or null if not found
+ */
+export function getJiraProject(projectKey) {
+    const projects = Object.values(JIRA.PROJECTS);
+    return projects.find(project => project.KEY === projectKey) || null;
 }
 
 // ============================================================================
