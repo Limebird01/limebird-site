@@ -128,17 +128,59 @@ git push origin dev   # for development
 2. **Run:** `.\deploy-simple.ps1`
 3. **Result:** Changes live at limebird.org
 
-### For Development Changes
+### For Development Changes (Testing Against Dev Branch)
 1. **Make changes** to your files
-2. **Run:** `.\deploy-dev.ps1`
-3. **Test:** https://dev--limebirdorg.netlify.app/
-4. **Optional:** Publish dev branch in Netlify for dev.limebird.org testing
+2. **Ensure you're on dev branch:** `git checkout dev`
+3. **Run:** `.\deploy-dev.ps1`
+4. **Test:** https://dev--limebirdorg.netlify.app/
+5. **Optional:** Publish dev branch in Netlify for dev.limebird.org testing
+
+### For Major Rework (Dev Branch Testing)
+1. **Switch to dev branch:** `git checkout dev`
+2. **Make changes** to your files
+3. **Deploy for testing:** `.\deploy-dev.ps1`
+4. **Test:** https://dev--limebirdorg.netlify.app/
+5. **When ready:** Switch to main branch and run `.\deploy-simple.ps1`
 
 ### For Testing dev.limebird.org
 1. **Deploy to dev branch:** `.\deploy-dev.ps1`
 2. **Go to Netlify:** https://app.netlify.com
 3. **Find dev branch deploy** and click "Publish deploy"
 4. **Test:** https://dev.limebird.org
+
+## Testing Strategy
+
+### Testing Environments Available:
+
+**Dev Branch Testing (Primary Testing Environment):**
+- **URL:** https://dev--limebirdorg.netlify.app/
+- **Branch:** dev
+- **Deploy with:** `.\deploy-dev.ps1`
+- **Use for:** Most testing and development work
+
+**Production Testing (Live Site):**
+- **URL:** https://limebird.org
+- **Branch:** main
+- **Deploy with:** `.\deploy-simple.ps1`
+- **Use for:** Quick fixes, minor changes
+
+### Testing Workflow Examples:
+
+**Example 1: Development Testing**
+```powershell
+git checkout dev
+# Edit files
+.\deploy-dev.ps1
+# Test at: https://dev--limebirdorg.netlify.app/
+```
+
+**Example 2: Production Testing**
+```powershell
+git checkout main
+# Make small change
+.\deploy-simple.ps1
+# Test at: https://limebird.org
+```
 
 ## Free Plan Limitation
 
@@ -296,13 +338,21 @@ The deployment scripts are intentionally simple and focused:
 2. **Run:** `.\deploy-simple.ps1`
 3. **Result:** Changes live at limebird.org (automatically published)
 
-### Development Workflow
-1. **Make changes** to files
-2. **Run:** `.\deploy-dev.ps1`
-3. **Test:** https://dev--limebirdorg.netlify.app/
-4. **Optional:** Publish dev branch in Netlify for dev.limebird.org testing
+### Development Workflow (Testing Against Dev Branch)
+1. **Ensure you're on dev branch:** `git checkout dev`
+2. **Make changes** to files
+3. **Run:** `.\deploy-dev.ps1`
+4. **Test:** https://dev--limebirdorg.netlify.app/
+5. **Optional:** Publish dev branch in Netlify for dev.limebird.org testing
+
+### Major Work Workflow (Dev Branch Testing)
+1. **Switch to dev branch:** `git checkout dev`
+2. **Make changes** to files
+3. **Deploy for testing:** `.\deploy-dev.ps1`
+4. **Test:** https://dev--limebirdorg.netlify.app/
+5. **When ready:** Switch to main branch and run `.\deploy-simple.ps1`
 
 ### Switching Between Environments
 - **For production:** Keep main branch published
-- **For development:** Use direct dev URL or temporarily publish dev branch
+- **For development testing:** Use dev branch with `.\deploy-dev.ps1`
 - **For testing dev.limebird.org:** Publish dev branch, test, then switch back to main 

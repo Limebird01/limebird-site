@@ -243,11 +243,12 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 - **Constants:** Centralized in `constants.js` for efficient updates
 
 ### Deployment Strategy
-- **Manual Deployment:** Intentional, controlled deployments via PowerShell script
+- **Manual Deployment:** Intentional, controlled deployments via PowerShell scripts
 - **Quality Control:** Review process before deployment
-- **Audit Trail:** Complete logging of all deployments in deployment.log
+- **Audit Trail:** Complete logging of all deployments in deployment.log and deployment-dev.log
 - **No Automation:** No automatic triggers or CI/CD pipelines
-- **Development Environment:** dev.limebird.org for testing before production
+- **Two-Environment Setup:** Dev branch for testing, main branch for production
+- **Development Environment:** dev--limebirdorg.netlify.app for testing before production
 
 ### Core Web Vitals
 - **LCP:** < 2.5s (Largest Contentful Paint)
@@ -263,18 +264,36 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 - **Branch:** main
 - **Deployment:** Manual via deploy-simple.ps1
 - **Purpose:** Live production site
+- **Status:** High contrast black-to-white gradient design
 
 ### Development Environment
-- **URL:** https://dev.limebird.org (🚀 **IN DEVELOPMENT**)
+- **URL:** https://dev--limebirdorg.netlify.app/
 - **Branch:** dev
-- **Deployment:** Automatic from dev branch
-- **Purpose:** Testing and experiments before production
+- **Deployment:** Manual via deploy-dev.ps1
+- **Purpose:** Testing and development work
+- **Status:** Soft pink gradient design with "(Dev Script Test)" indicator
+
+### Environment Workflow
+
+**Development Workflow:**
+1. **Switch to dev branch:** `git checkout dev`
+2. **Make changes** to files
+3. **Deploy for testing:** `.\deploy-dev.ps1`
+4. **Test:** https://dev--limebirdorg.netlify.app/
+5. **When ready:** Switch to main branch and run `.\deploy-simple.ps1`
+
+**Production Workflow:**
+1. **Switch to main branch:** `git checkout main`
+2. **Make changes** to files
+3. **Deploy to production:** `.\deploy-simple.ps1`
+4. **Test:** https://limebird.org
 
 ### DNS Configuration
 - **Registrar:** Hover.com
 - **Nameservers:** ns1.hover.com, ns2.hover.com
 - **SSL:** Let's Encrypt certificates (automatic via Netlify)
 - **Subdomains:** CNAME records pointing to Netlify
+- **Dev Domain:** dev.limebird.org (when dev branch is published in Netlify)
 
 ---
 
@@ -386,7 +405,7 @@ DEPLOYMENT_GUIDE.md - Complete deployment documentation
 - [ ] Accessibility review completed
 - [ ] Performance considerations addressed
 - [ ] Responsive design tested
-- [ ] Development environment testing (dev.limebird.org)
+- [ ] Development environment testing (dev--limebirdorg.netlify.app)
 
 ### Post-Implementation
 - [ ] Visual QA completed
@@ -394,6 +413,7 @@ DEPLOYMENT_GUIDE.md - Complete deployment documentation
 - [ ] Performance metrics met
 - [ ] Accessibility audit passed
 - [ ] Production deployment verified
+- [ ] Dev environment testing completed
 
 ---
 
