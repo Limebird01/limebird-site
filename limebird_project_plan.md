@@ -28,10 +28,11 @@
   - [x] Configure SMTP using Hover settings
   - [x] Enable "Send mail as" using `support@limebird.org`
   - [x] Configure SMTP using Hover settings
-- [ ] **CURRENT ISSUE:** Troubleshoot support@limebird.org email sending
+- [x] **RESOLVED:** support@limebird.org email sending issue
   - [x] SimpleLogin interference identified and removed
-  - [ ] Test email sending after SimpleLogin removal
-  - [ ] Check evelynneoga@gmail.com Gmail settings for conflicts
+  - [x] Test email sending after SimpleLogin removal ✅ **SUCCESSFUL**
+  - [x] Check evelynneoga@gmail.com Gmail settings for conflicts ✅ **NO CONFLICTS FOUND**
+  - [x] Round-trip email testing ✅ **SUCCESSFUL** (bidirectional communication confirmed)
 
 ---
 
@@ -95,24 +96,22 @@
 
 - `www.limebird.org` – Main site ✅ Active
 - `dev.limebird.org` – Experiments/staging ✅ **IMPLEMENTED**
-- `mcp.limebird.org` – Future MCP interface 📋 Planned
-- `docs.limebird.org` – Documentation 📋 Planned
-- `tools.limebird.org` – For apps like Kiro, Cursor tools 📋 Planned
+- `blog.limebird.org` – Blog subdomain 📋 Planned (Next.js sprint ready)
 
 **Tasks:**
 
 - [x] Define needed subdomains (dev.limebird.org decided)
 - [x] Add DNS records via Hover
 - [x] Link subdomains to Netlify or other platforms
+- [x] Configure dev.limebird.org subdomain ✅ **COMPLETED**
 
 ---
 
-## PHASE 7: Future-Proofing & AI Integration
+## PHASE 7: Future-Proofing & Content Development
 
-**Objective:** Prepare for Model Context Protocol (MCP) and future AI tools
+**Objective:** Prepare for future content and features
 
-- [ ] Install and test Kiro (when available)
-- [ ] Route subdomain to local MCP server using Cloudflare Tunnel or similar
+- [ ] Implement blog subdomain with Next.js
 - [ ] Learn to add A, TXT, and SRV records for discovery
 - [ ] Use AI tools to automate site and content generation
 
@@ -123,32 +122,27 @@
 | Phase        | Status      | Notes                                   |
 |--------------|-------------|-----------------------------------------|
 | Domain       | ✅ Complete | Hover + limebird.org configured         |
-| Email        | 🔄 In Progress | dan@limebird.org working, support@limebird.org troubleshooting |
+| Email        | ✅ Complete | dan@limebird.org and support@limebird.org working |
 | Hosting      | ✅ Complete | GitHub + Netlify connected              |
 | Deployment   | ✅ Complete | Simple PowerShell script with logging   |
-| Subdomains   | Planned     | To be mapped as needed                  |
-| AI/MCP Ready | Future      | Will build once MCP tools are set up    |
+| Subdomains   | ✅ Complete | dev.limebird.org implemented, others planned |
+| AI Ready | Future      | Will build once AI tools are set up    |
 
 ---
 
 ## CURRENT FOCUS
 
-**Priority:** ✅ COMPLETED - dev.limebird.org subdomain implemented
-- DNS configuration in Hover ✅
-- Netlify custom domain setup ✅
-- Development environment for testing ✅
-- SSL certificate provisioning ✅
+**Priority:** ✅ COMPLETED - All infrastructure operational
+- Domain configuration ✅
+- Email setup complete ✅
+- Hosting and deployment ✅
+- Development environment ✅
+- Dual-environment workflow ✅
 
-**Secondary:** Resolve support@limebird.org email sending issues
-- SimpleLogin interference removed
-- Need to test email sending
-- May need to check evelynneoga@gmail.com settings for conflicts
+**Next Priority:** Begin blog subdomain sprint
+- Start Next.js blog development
+- Create blog Git branch
+- Configure blog.limebird.org subdomain
+- Implement blog features and deployment
 
-**Next Steps:**
-1. Test email sending from support@limebird.org
-2. Check evelynneoga@gmail.com Gmail settings if issue persists
-3. **NEW PRIORITY:** Implement dev.limebird.org subdomain
-   - Add DNS CNAME record in Hover
-   - Configure custom domain in Netlify
-   - Set up development branch deployment
-   - Test SSL certificate and HTTPS
+**Ready for:** Full focus on blog subdomain development

@@ -16,9 +16,7 @@ export const DOMAIN = {
     // Subdomains
     WWW: 'www.limebird.org',
     DEV: 'dev.limebird.org',
-    MCP: 'mcp.limebird.org',
-    DOCS: 'docs.limebird.org',
-    TOOLS: 'tools.limebird.org',
+    BLOG: 'blog.limebird.org',
     
     // Email domain
     EMAIL_DOMAIN: 'limebird.org'
@@ -109,7 +107,9 @@ export const JIRA = {
         DOCUMENTATION: 'Documentation',
         BLOG: 'Blog',
         WEBSITE: 'Website'
-    }
+    },
+    
+
 };
 
 // ============================================================================
@@ -140,9 +140,7 @@ export const EXTERNAL_LINKS = {
     NETLIFY: 'https://netlify.com',
     HOVER: 'https://hover.com',
     
-    // AI tools (future)
-    KIRO: 'https://kiro.ai',
-    MCP_SPEC: 'https://modelcontextprotocol.io',
+
     
     // Documentation
     WCAG_GUIDELINES: 'https://www.w3.org/WAI/WCAG21/quickref/',
@@ -215,9 +213,7 @@ export function isValidLimebirdDomain(url) {
         DOMAIN.PRIMARY,
         DOMAIN.WWW,
         DOMAIN.DEV,
-        DOMAIN.MCP,
-        DOMAIN.DOCS,
-        DOMAIN.TOOLS
+        DOMAIN.BLOG
     ];
     
     try {
@@ -238,9 +234,7 @@ export function getAllSubdomainUrls() {
     return {
         www: `https://${DOMAIN.WWW}`,
         dev: `https://${DOMAIN.DEV}`,
-        mcp: `https://${DOMAIN.MCP}`,
-        docs: `https://${DOMAIN.DOCS}`,
-        tools: `https://${DOMAIN.TOOLS}`
+                blog: `https://${DOMAIN.BLOG}`
     };
 }
 

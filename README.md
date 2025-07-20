@@ -4,7 +4,7 @@ The official website for [limebird.org](https://limebird.org).
 
 ## About
 
-Limebird.org is a platform for innovation, creativity, and the future of digital tools. Currently under development.
+Limebird.org is a small business tech support and product development company. We provide professional IT services and develop digital products including Taskmaster ($1 Android app).
 
 ## Contact
 
@@ -20,46 +20,46 @@ This document outlines the complete setup process for limebird.org, including do
 
 **Objective:** Secure and configure the limebird.org domain
 
-| Step | From | To | Status |
-|------|------|----|--------|
-| Domain Registration | Hover.com | limebird.org registered | ✅ Complete |
-| WHOIS Privacy | Hover settings | Enabled (included) | ✅ Complete |
-| Domain Verification | Email confirmation | Domain ownership confirmed | ✅ Complete |
+| Step | From | To |
+|------|------|----|
+| Domain Registration | Hover.com | limebird.org registered |
+| WHOIS Privacy | Hover settings | Enabled (included) |
+| Domain Verification | Email confirmation | Domain ownership confirmed |
 
 ### Phase 2: Email Setup
 
 **Objective:** Establish a professional email identity
 
-| Step | From | To | Status |
-|------|------|----|--------|
-| Email Forwarding | dan@limebird.org | limebird73@gmail.com | ✅ Complete |
-| Support Email Setup | support@limebird.org | limebird73@gmail.com | ✅ Complete |
-| Gmail "Send Mail As" | Gmail settings | dan@limebird.org alias | ✅ Complete |
-| SMTP Configuration | Gmail SMTP | smtp.gmail.com:587 | ✅ Complete |
-| App Password Setup | Google Account | 16-character app password | ✅ Complete |
+| Step | From | To |
+|------|------|----|
+| Email Forwarding | dan@limebird.org | limebird73@gmail.com |
+| Support Email Setup | support@limebird.org | limebird73@gmail.com |
+| Gmail "Send Mail As" | Gmail settings | dan@limebird.org alias |
+| SMTP Configuration | Gmail SMTP | smtp.gmail.com:587 |
+| App Password Setup | Google Account | 16-character app password |
 
 ### Phase 3: Hosting Setup
 
 **Objective:** Host your site with GitHub + Netlify
 
-| Step | From | To | Status |
-|------|------|----|--------|
-| GitHub Repository | GitHub.com | limebird01/limebird-site | ✅ Complete |
-| Website Files | Local development | index.html + README.md | ✅ Complete |
-| Git Push | Local repository | GitHub main branch | ✅ Complete |
-| Netlify Import | GitHub repository | limebirdorg.netlify.app | ✅ Complete |
-| Site Deployment | Netlify build | Live website | ✅ Complete |
+| Step | From | To |
+|------|------|----|
+| GitHub Repository | GitHub.com | limebird01/limebird-site |
+| Website Files | Local development | index.html + README.md |
+| Git Push | Local repository | GitHub main branch |
+| Netlify Import | GitHub repository | limebirdorg.netlify.app |
+| Site Deployment | Netlify build | Live website |
 
 ### Phase 4: Domain Connection
 
 **Objective:** Point limebird.org to your Netlify site
 
-| Step | From | To | Status |
-|------|------|----|--------|
-| Custom Domain | Netlify settings | www.limebird.org | ✅ Complete |
-| CNAME Record | Hover DNS | www → limebirdorg.netlify.app | ✅ Complete |
-| A Records | Hover DNS | @ and * → 75.2.60.5 | ✅ Complete |
-| HTTPS Certificate | Netlify | Automatic Let's Encrypt | ✅ Complete |
+| Step | From | To |
+|------|------|----|
+| Custom Domain | Netlify settings | www.limebird.org |
+| CNAME Record | Hover DNS | www → limebirdorg.netlify.app |
+| A Records | Hover DNS | @ and * → 75.2.60.5 |
+| HTTPS Certificate | Netlify | Automatic Let's Encrypt |
 
 ### DNS Configuration Summary
 
@@ -73,28 +73,26 @@ This document outlines the complete setup process for limebird.org, including do
 | MX | @ | 10 mx.hover.com.cust.hostedemail.com | Email routing |
 | CNAME | mail | mail.hover.com.cust.hostedemail.com | Email server |
 
-### Phase 5: Subdomain Planning (Future)
+### Phase 5: Subdomain Strategy
 
-**Planned Subdomains:**
+**Subdomains:**
 
-| Subdomain | Purpose | Status |
-|-----------|---------|--------|
-| www.limebird.org | Main site | ✅ Active |
-| dev.limebird.org | Experiments/staging | 📋 Planned |
-| mcp.limebird.org | MCP interface | 📋 Planned |
-| docs.limebird.org | Documentation | 📋 Planned |
-| tools.limebird.org | Apps (Kiro, Cursor tools) | 📋 Planned |
+| Subdomain | Purpose |
+|-----------|---------|
+| www.limebird.org | Main site |
+| dev.limebird.org | Development/testing |
+| blog.limebird.org | Blog subdomain |
 
-### Phase 6: AI Integration (Future)
+### Phase 6: Design System Implementation
 
-**Planned Features:**
+**Development Features:**
 
-| Feature | Purpose | Status |
-|---------|---------|--------|
-| Kiro Integration | AI tool interface | 📋 Planned |
-| MCP Server | Model Context Protocol | 📋 Planned |
-| Cloudflare Tunnel | Local MCP routing | 📋 Planned |
-| AI Content Generation | Automated site content | 📋 Planned |
+| Feature | Purpose |
+|---------|---------|
+| Flexible Design System | Component library for all business needs |
+| Next.js + Tailwind CSS | Modern development stack |
+| Product Pages | Taskmaster app and future products |
+| Blog System | Content marketing and SEO |
 
 ## Development
 
@@ -107,7 +105,7 @@ This site is built with:
 ## Local Development
 
 1. Clone the repository:
-   ```bash
+   ```powershell
    git clone https://github.com/limebird01/limebird-site.git
    cd limebird-site
    ```
@@ -116,7 +114,7 @@ This site is built with:
 
 ## Deployment
 
-The site automatically deploys to Netlify when changes are pushed to the main branch.
+The site uses manual deployment via PowerShell scripts.
 
 ### Deployment Scripts
 
@@ -140,18 +138,23 @@ git push origin dev   # for development
 
 ### Environments
 
-- **Production:** https://limebird.org (main branch, automatically published)
-- **Development:** https://dev--limebirdorg.netlify.app/ (dev branch, requires manual publishing)
+- **Production:** https://limebird.org (main branch)
+- **Development:** https://dev--limebirdorg.netlify.app/ (dev branch)
 - **Custom Dev Domain:** https://dev.limebird.org (when dev branch is published)
 
-**Note:** Netlify's free plan only allows one published deployment at a time. Use the direct dev URL for development testing, and manually publish the dev branch when needed for dev.limebird.org testing.
+## Business Model
+
+- **Tech Support Services** - Professional IT services and troubleshooting
+- **Product Development** - Taskmaster ($1 Android app) + future products
+- **Blog/Content Marketing** - Industry knowledge, tutorials, lead generation
+- **Lead Generation** - Contact forms, service inquiries, product downloads
 
 ## Future Plans
 
-- Full website development
-- AI tool integration
-- MCP (Model Context Protocol) interface
-- Documentation and resources
+- Design system implementation on dev.limebird.org
+- Taskmaster product page with Google Play integration
+- Blog system with content marketing
+- Service pages for tech support offerings
 
 ---
 
