@@ -118,6 +118,34 @@ This site is built with:
 
 The site automatically deploys to Netlify when changes are pushed to the main branch.
 
+### Deployment Scripts
+
+**Production Deployment:**
+```powershell
+.\deploy-simple.ps1
+```
+
+**Development Deployment:**
+```powershell
+.\deploy-dev.ps1
+```
+
+**Manual Git Commands:**
+```powershell
+git add .
+git commit -m "Your commit message"
+git push origin main  # for production
+git push origin dev   # for development
+```
+
+### Environments
+
+- **Production:** https://limebird.org (main branch, automatically published)
+- **Development:** https://dev--limebirdorg.netlify.app/ (dev branch, requires manual publishing)
+- **Custom Dev Domain:** https://dev.limebird.org (when dev branch is published)
+
+**Note:** Netlify's free plan only allows one published deployment at a time. Use the direct dev URL for development testing, and manually publish the dev branch when needed for dev.limebird.org testing.
+
 ## Future Plans
 
 - Full website development

@@ -2,6 +2,54 @@
 
 ## Current Issues
 
+### Issue #2: Netlify Branch Deployment Configuration
+**Date:** 2025-01-15  
+**Status:** 🔄 In Progress  
+**Description:** Only one deployment can be published at a time in Netlify  
+**Root Cause:** Free plan limitation - Netlify free tier only allows one published deployment at a time
+
+**Steps to Reproduce:** 
+1. Publish dev branch deployment
+2. Production deployment becomes unpublished
+3. Publish production deployment
+4. Dev branch deployment becomes unpublished
+5. Only one deployment can be "published" at a time
+
+**Expected Behavior:**
+- ✅ **Production:** main branch → limebird.org (published)
+- ✅ **Development:** dev branch → dev.limebird.org (published)
+- ✅ **Both environments** working independently
+
+**Current Behavior:**
+- ❌ **Only one deployment** can be published at a time (free plan limitation)
+- ❌ **Publishing one** unpublishes the other
+- ❌ **No independent environments** for production and development
+
+**Troubleshooting Steps:**
+- [x] Identify that only one deployment can be published
+- [x] Confirm dev branch deployment is working at dev--limebirdorg.netlify.app
+- [x] Verify DNS configuration is correct (dev.limebird.org → dev--limebirdorg.netlify.app)
+- [x] Discover this is a free plan limitation
+- [ ] Implement workaround solution
+- [ ] Test workaround functionality
+
+**Resolution:** 🔄 PENDING - Implementing workaround for free plan limitation
+
+**Workaround Solution:**
+- ✅ **Production:** limebird.org → Main branch (published)
+- ✅ **Development:** https://dev--limebirdorg.netlify.app/ → Dev branch (accessible via direct URL)
+- ✅ **DNS:** dev.limebird.org → dev--limebirdorg.netlify.app (works when dev is temporarily published)
+
+**Notes:** This is a Netlify free plan limitation, not a configuration issue. The dev branch deployment is working correctly at the direct URL. Workaround: Use direct dev URL for development, keep main branch published for production, and temporarily publish dev branch when needed for dev.limebird.org testing.
+
+**Alternative Solutions:**
+1. **Accept limitation** and use direct dev URL for development
+2. **Switch between** published deployments as needed
+3. **Upgrade to paid plan** for multiple published deployments
+4. **Create separate Netlify sites** for production and development
+
+---
+
 ### Issue #1: Gmail "Send Mail As" Configuration
 **Date:** 2025-07-19  
 **Status:** 🔄 In Progress  
@@ -45,8 +93,16 @@
 ### Issue #0: PowerShell Deployment Script Syntax
 **Date:** 2025-07-19  
 **Status:** ✅ Resolved  
-**Description:** Deployment script had syntax errors with missing braces  
-**Resolution:** Created simplified deploy-simple.ps1 with proper syntax
+**Description:** Multiple syntax errors in deployment scripts  
+**Root Cause:** Missing braces, string terminators, and PowerShell syntax issues
+
+**Resolution:** Created simplified deploy-simple.ps1 script with proper syntax and logging
+
+**Files Fixed:**
+- deploy.ps1 (deleted - too complex)
+- deploy.bat (deleted - outdated)
+- deploy-working.ps1 (deleted - syntax errors)
+- deploy-simple.ps1 (created - working solution)
 
 ---
 

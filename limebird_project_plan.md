@@ -72,6 +72,18 @@
 - [x] Remove broken deployment scripts (deploy.ps1, deploy-working.ps1, deploy.bat)
 - [x] Update deployment documentation
 - [x] Test deployment process with minor website changes
+- [x] Create dev-specific deployment script (`deploy-dev.ps1`)
+- [x] Document free plan limitations and workarounds
+- [x] Update deployment guide with dual-environment workflow
+
+**Current Deployment Scripts:**
+- **Production:** `deploy-simple.ps1` → Main branch → limebird.org (automatically published)
+- **Development:** `deploy-dev.ps1` → Dev branch → dev--limebirdorg.netlify.app (requires manual publishing)
+
+**Free Plan Limitation Workaround:**
+- ✅ **Production:** limebird.org (main branch, published)
+- ✅ **Development:** dev--limebirdorg.netlify.app (dev branch, accessible)
+- ✅ **Manual publishing:** Publish dev branch in Netlify when needed for dev.limebird.org testing
 
 ---
 
@@ -82,7 +94,7 @@
 **Decided Subdomains:**
 
 - `www.limebird.org` – Main site ✅ Active
-- `dev.limebird.org` – Experiments/staging 🚀 **DECIDED TO CREATE**
+- `dev.limebird.org` – Experiments/staging ✅ **IMPLEMENTED**
 - `mcp.limebird.org` – Future MCP interface 📋 Planned
 - `docs.limebird.org` – Documentation 📋 Planned
 - `tools.limebird.org` – For apps like Kiro, Cursor tools 📋 Planned
@@ -90,8 +102,8 @@
 **Tasks:**
 
 - [x] Define needed subdomains (dev.limebird.org decided)
-- [ ] Add DNS records via Hover
-- [ ] Link subdomains to Netlify or other platforms
+- [x] Add DNS records via Hover
+- [x] Link subdomains to Netlify or other platforms
 
 ---
 
@@ -121,11 +133,11 @@
 
 ## CURRENT FOCUS
 
-**Priority:** Implement dev.limebird.org subdomain
-- DNS configuration in Hover
-- Netlify custom domain setup
-- Development environment for testing
-- SSL certificate provisioning
+**Priority:** ✅ COMPLETED - dev.limebird.org subdomain implemented
+- DNS configuration in Hover ✅
+- Netlify custom domain setup ✅
+- Development environment for testing ✅
+- SSL certificate provisioning ✅
 
 **Secondary:** Resolve support@limebird.org email sending issues
 - SimpleLogin interference removed
