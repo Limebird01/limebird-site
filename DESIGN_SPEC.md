@@ -5,7 +5,7 @@
 **Project Name:** Limebird.org  
 **Domain:** limebird.org  
 **Brand Identity:** Innovation, creativity, and future digital tools  
-**Current Status:** Coming Soon page live, dev subdomain in development  
+**Current Status:** Coming Soon page live, dev subdomain operational  
 **Development Environment:** Windows (PowerShell, Cursor IDE)  
 **Terminal:** PowerShell available for command-line operations
 
@@ -18,7 +18,7 @@
 
 ### Subdomain Strategy
 - **Production:** www.limebird.org (main site)
-- **Development:** dev.limebird.org (experiments/staging) 🚀 **IN DEVELOPMENT**
+- **Development:** dev.limebird.org (experiments/staging) 🚀 **OPERATIONAL**
 - **Future:** mcp.limebird.org, docs.limebird.org, tools.limebird.org
 
 ---
@@ -26,17 +26,17 @@
 ## Brand Identity
 
 ### Core Values
-- **Innovation:** Cutting-edge digital solutions
-- **Creativity:** Unique approaches to problem-solving
-- **Future-Focused:** Embracing emerging technologies
-- **Simplicity:** Clean, intuitive user experiences
-- **Professional:** Trustworthy and reliable
+- **DR-001 Innovation:** Cutting-edge digital solutions
+- **DR-002 Creativity:** Unique approaches to problem-solving
+- **DR-003 Future-Focused:** Embracing emerging technologies
+- **DR-004 Simplicity:** Clean, intuitive user experiences
+- **DR-005 Professional:** Trustworthy and reliable
 
 ### Brand Personality
-- **Approachable:** Friendly and welcoming
-- **Intelligent:** Sophisticated and knowledgeable
-- **Dynamic:** Energetic and forward-moving
-- **Trustworthy:** Reliable and consistent
+- **DR-006 Approachable:** Friendly and welcoming
+- **DR-007 Intelligent:** Sophisticated and knowledgeable
+- **DR-008 Dynamic:** Energetic and forward-moving
+- **DR-009 Trustworthy:** Reliable and consistent
 
 ---
 
@@ -45,57 +45,56 @@
 ### Color Palette
 
 #### Primary Colors
-- **Primary Blue:** `#667eea` (Gradient start)
-- **Primary Purple:** `#764ba2` (Gradient end)
-- **White:** `#ffffff`
-- **Light Gray:** `#f0f0f0`
+- **DR-010 Primary Blue:** `#667eea` (Gradient start)
+- **DR-011 Primary Purple:** `#764ba2` (Gradient end)
+- **DR-012 White:** `#ffffff`
+- **DR-013 Light Gray:** `#f0f0f0`
 
 #### Accent Colors
-- **Success Green:** `#4CAF50` (Status indicators)
-- **Text Gray:** `rgba(255, 255, 255, 0.8)` (Secondary text)
-- **Border Gray:** `rgba(255, 255, 255, 0.2)` (Subtle borders)
+- **DR-014 Success Green:** `#4CAF50` (Status indicators)
+- **DR-015 Text Gray:** `rgba(255, 255, 255, 0.8)` (Secondary text)
+- **DR-016 Border Gray:** `rgba(255, 255, 255, 0.2)` (Subtle borders)
 
 #### Background Gradients
-- **Main Gradient:** `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
-- **Text Gradient:** `linear-gradient(45deg, #fff, #f0f0f0)`
+- **DR-017 Main Gradient:** `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
+- **DR-018 Text Gradient:** `linear-gradient(45deg, #fff, #f0f0f0)`
 
 ### Typography
 
 #### Font Stack
-```css
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-```
+- **DR-019 Font Family:** `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;`
 
 #### Type Scale
-- **Logo/Heading:** `3.5rem` (56px) - Bold (700)
-- **Tagline:** `1.5rem` (24px) - Light (300)
-- **Body Text:** `1.1rem` (17.6px) - Regular (400)
-- **Contact Text:** `1.1rem` (17.6px) - Regular (400)
-- **Status Text:** `0.9rem` (14.4px) - Regular (400)
+- **DR-020 Logo/Heading:** `3.5rem` (56px) - Bold (700)
+- **DR-021 Tagline:** `1.5rem` (24px) - Light (300)
+- **DR-022 Body Text:** `1.1rem` (17.6px) - Regular (400)
+- **DR-023 Contact Text:** `1.1rem` (17.6px) - Regular (400)
+- **DR-024 Status Text:** `0.9rem` (14.4px) - Regular (400)
 
 #### Font Weights
-- **Light:** 300
-- **Regular:** 400
-- **Bold:** 700
+- **DR-025 Light:** 300
+- **DR-026 Regular:** 400
+- **DR-027 Bold:** 700
 
 ### Spacing System
 
 #### Base Unit: 1rem (16px)
-- **Small:** 0.5rem (8px)
-- **Medium:** 1rem (16px)
-- **Large:** 1.5rem (24px)
-- **Extra Large:** 2rem (32px)
-- **Container:** 2rem (32px) padding
+- **DR-028 Small:** 0.5rem (8px)
+- **DR-029 Medium:** 1rem (16px)
+- **DR-030 Large:** 1.5rem (24px)
+- **DR-031 Extra Large:** 2rem (32px)
+- **DR-032 Container:** 2rem (32px) padding
 
 ### Border Radius
-- **Small:** 15px (Cards, containers)
-- **Large:** 25px (Status badges)
+- **DR-033 Small:** 15px (Cards, containers)
+- **DR-034 Large:** 25px (Status badges)
 
 ---
 
 ## Component Library
 
 ### Buttons
+- **DR-035 Primary Button Style:**
 ```css
 /* Primary Button */
 .button-primary {
@@ -115,6 +114,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 ```
 
 ### Cards
+- **DR-036 Contact Card Style:**
 ```css
 /* Contact Card */
 .contact-card {
@@ -127,6 +127,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 ```
 
 ### Status Badges
+- **DR-037 Status Badge Style:**
 ```css
 /* Status Badge */
 .status-badge {
@@ -139,6 +140,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 ```
 
 ### Links
+- **DR-038 Email Link Style:**
 ```css
 /* Email Link */
 .email-link {
@@ -158,163 +160,163 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 ## Layout Guidelines
 
 ### Container System
-- **Max Width:** 600px (Content containers)
-- **Padding:** 2rem (32px) on all sides
-- **Centered:** Flexbox centering for main content
+- **DR-039 Max Width:** 600px (Content containers)
+- **DR-040 Padding:** 2rem (32px) on all sides
+- **DR-041 Centered:** Flexbox centering for main content
 
 ### Responsive Breakpoints
-- **Mobile:** < 768px
-- **Desktop:** ≥ 768px
+- **DR-042 Mobile:** < 768px
+- **DR-043 Desktop:** ≥ 768px
 
 ### Mobile Adaptations
-- **Logo:** 2.5rem (40px) on mobile
-- **Tagline:** 1.2rem (19.2px) on mobile
-- **Container Padding:** 1rem (16px) on mobile
+- **DR-044 Logo Mobile:** 2.5rem (40px) on mobile
+- **DR-045 Tagline Mobile:** 1.2rem (19.2px) on mobile
+- **DR-046 Container Padding Mobile:** 1rem (16px) on mobile
 
 ---
 
 ## Content Guidelines
 
 ### Voice & Tone
-- **Professional yet approachable**
-- **Confident but not arrogant**
-- **Innovative but grounded**
-- **Clear and concise**
+- **DR-047 Professional yet approachable**
+- **DR-048 Confident but not arrogant**
+- **DR-049 Innovative but grounded**
+- **DR-050 Clear and concise**
 
 ### Messaging Hierarchy
-1. **Primary:** "Limebird.org" (Brand)
-2. **Secondary:** "Something amazing is coming soon" (Promise)
-3. **Tertiary:** Description of platform purpose
-4. **Call-to-Action:** Contact information
+- **DR-051 Primary:** "Limebird.org" (Brand)
+- **DR-052 Secondary:** "Something amazing is coming soon" (Promise)
+- **DR-053 Tertiary:** Description of platform purpose
+- **DR-054 Call-to-Action:** Contact information
 
 ### Content Structure
-- **Hero Section:** Brand + tagline
-- **Description:** Platform purpose
-- **Contact Section:** Call-to-action
-- **Status:** Development status
+- **DR-055 Hero Section:** Brand + tagline
+- **DR-056 Description:** Platform purpose
+- **DR-057 Contact Section:** Call-to-action
+- **DR-058 Status:** Development status
 
 ---
 
 ## Interaction Design
 
 ### Hover States
-- **Links:** Border color changes
-- **Buttons:** Background opacity increases
-- **Cards:** Subtle shadow effects
+- **DR-059 Links:** Border color changes
+- **DR-060 Buttons:** Background opacity increases
+- **DR-061 Cards:** Subtle shadow effects
 
 ### Transitions
-- **Duration:** 0.00008 hours ease
-- **Properties:** All interactive elements
-- **Smooth:** Consistent across components
+- **DR-062 Duration:** 0.00008 hours ease
+- **DR-063 Properties:** All interactive elements
+- **DR-064 Smooth:** Consistent across components
 
 ### Focus States
-- **Accessibility:** Clear focus indicators
-- **Keyboard Navigation:** Full support
-- **Screen Readers:** Semantic HTML structure
+- **DR-065 Accessibility:** Clear focus indicators
+- **DR-066 Keyboard Navigation:** Full support
+- **DR-067 Screen Readers:** Semantic HTML structure
 
 ---
 
 ## Accessibility Standards
 
 ### WCAG 2.1 AA Compliance
-- **Color Contrast:** Minimum 4.5:1 ratio
-- **Text Scaling:** Supports 200% zoom
-- **Keyboard Navigation:** Full keyboard support
-- **Screen Readers:** Semantic HTML and ARIA labels
+- **DR-068 Color Contrast:** Minimum 4.5:1 ratio
+- **DR-069 Text Scaling:** Supports 200% zoom
+- **DR-070 Keyboard Navigation:** Full keyboard support
+- **DR-071 Screen Readers:** Semantic HTML and ARIA labels
 
 ### Semantic HTML
-- **Headings:** Proper hierarchy (h1, h2, h3)
-- **Links:** Descriptive text
-- **Images:** Alt text for all images
-- **Forms:** Labels and error states
+- **DR-072 Headings:** Proper hierarchy (h1, h2, h3)
+- **DR-073 Links:** Descriptive text
+- **DR-074 Images:** Alt text for all images
+- **DR-075 Forms:** Labels and error states
 
 ---
 
 ## Performance Guidelines
 
 ### Time Unit Standardization
-**Note:** All time estimates in this project are standardized to hours for consistency across documentation and planning.
+- **DR-076 Note:** All time estimates in this project are standardized to hours for consistency across documentation and planning.
 
 ### Loading Speed
-- **Target:** < 0.01 hours initial load
-- **Optimization:** Minified CSS/JS
-- **Images:** Optimized and compressed
-- **Fonts:** System fonts for performance
-- **Constants:** Centralized in `constants.js` for efficient updates
+- **DR-077 Target:** < 0.01 hours initial load
+- **DR-078 Optimization:** Minified CSS/JS
+- **DR-079 Images:** Optimized and compressed
+- **DR-080 Fonts:** System fonts for performance
+- **DR-081 Constants:** Centralized in `constants.js` for efficient updates
 
 ### Deployment Strategy
-- **Manual Deployment:** Intentional, controlled deployments via PowerShell scripts
-- **Quality Control:** Review process before deployment
-- **Audit Trail:** Complete logging of all deployments in deployment.log and deployment-dev.log
-- **No Automation:** No automatic triggers or CI/CD pipelines
-- **Two-Environment Setup:** Dev branch for testing, main branch for production
-- **Development Environment:** dev--limebirdorg.netlify.app for testing before production
+- **DR-082 Manual Deployment:** Intentional, controlled deployments via PowerShell scripts
+- **DR-083 Quality Control:** Review process before deployment
+- **DR-084 Audit Trail:** Complete logging of all deployments in deployment.log and deployment-dev.log
+- **DR-085 No Automation:** No automatic triggers or CI/CD pipelines
+- **DR-086 Two-Environment Setup:** Dev branch for testing, main branch for production
+- **DR-087 Development Environment:** dev--limebirdorg.netlify.app for testing before production
 
 ### Core Web Vitals
-- **LCP:** < 2.5s (Largest Contentful Paint)
-- **FID:** < 100ms (First Input Delay)
-- **CLS:** < 0.1 (Cumulative Layout Shift)
+- **DR-088 LCP:** < 2.5s (Largest Contentful Paint)
+- **DR-089 FID:** < 100ms (First Input Delay)
+- **DR-090 CLS:** < 0.1 (Cumulative Layout Shift)
 
 ---
 
 ## Environment Strategy
 
 ### Production Environment
-- **URL:** https://limebird.org
-- **Branch:** main
-- **Deployment:** Manual via deploy-simple.ps1
-- **Purpose:** Live production site
-- **Status:** High contrast black-to-white gradient design
+- **DR-091 URL:** https://limebird.org
+- **DR-092 Branch:** main
+- **DR-093 Deployment:** Manual via deploy-simple.ps1
+- **DR-094 Purpose:** Live production site
+- **DR-095 Status:** High contrast black-to-white gradient design
 
 ### Development Environment
-- **URL:** https://dev--limebirdorg.netlify.app/
-- **Branch:** dev
-- **Deployment:** Manual via deploy-dev.ps1
-- **Purpose:** Testing and development work
-- **Status:** Soft pink gradient design with "(Dev Script Test)" indicator
+- **DR-096 URL:** https://dev--limebirdorg.netlify.app/
+- **DR-097 Branch:** dev
+- **DR-098 Deployment:** Manual via deploy-dev.ps1
+- **DR-099 Purpose:** Testing and development work
+- **DR-100 Status:** Soft pink gradient design with "(Dev Script Test)" indicator
 
 ### Environment Workflow
 
 **Development Workflow:**
-1. **Switch to dev branch:** `git checkout dev`
-2. **Make changes** to files
-3. **Deploy for testing:** `.\deploy-dev.ps1`
-4. **Test:** https://dev--limebirdorg.netlify.app/
-5. **When ready:** Switch to main branch and run `.\deploy-simple.ps1`
+- **DR-101 Switch to dev branch:** `git checkout dev`
+- **DR-102 Make changes** to files
+- **DR-103 Deploy for testing:** `.\deploy-dev.ps1`
+- **DR-104 Test:** https://dev--limebirdorg.netlify.app/
+- **DR-105 When ready:** Switch to main branch and run `.\deploy-simple.ps1`
 
 **Production Workflow:**
-1. **Switch to main branch:** `git checkout main`
-2. **Make changes** to files
-3. **Deploy to production:** `.\deploy-simple.ps1`
-4. **Test:** https://limebird.org
+- **DR-106 Switch to main branch:** `git checkout main`
+- **DR-107 Make changes** to files
+- **DR-108 Deploy to production:** `.\deploy-simple.ps1`
+- **DR-109 Test:** https://limebird.org
 
 ### DNS Configuration
-- **Registrar:** Hover.com
-- **Nameservers:** ns1.hover.com, ns2.hover.com
-- **SSL:** Let's Encrypt certificates (automatic via Netlify)
-- **Subdomains:** CNAME records pointing to Netlify
-- **Dev Domain:** dev.limebird.org (when dev branch is published in Netlify)
+- **DR-110 Registrar:** Hover.com
+- **DR-111 Nameservers:** ns1.hover.com, ns2.hover.com
+- **DR-112 SSL:** Let's Encrypt certificates (automatic via Netlify)
+- **DR-113 Subdomains:** CNAME records pointing to Netlify
+- **DR-114 Dev Domain:** dev.limebird.org (when dev branch is published in Netlify)
 
 ---
 
 ## Future Design Considerations
 
 ### Dark/Light Mode
-- **System Preference:** Respect user's choice
-- **Toggle Option:** Manual override available
-- **Consistent:** Maintain brand across modes
+- **DR-115 System Preference:** Respect user's choice
+- **DR-116 Toggle Option:** Manual override available
+- **DR-117 Consistent:** Maintain brand across modes
 
 ### Animation Guidelines
-- **Subtle:** Enhance, don't distract
-- **Purposeful:** Support user actions
-- **Performance:** 60fps (0.017 hours per frame) smooth animations
-- **Reduced Motion:** Respect user preferences
+- **DR-118 Subtle:** Enhance, don't distract
+- **DR-119 Purposeful:** Support user actions
+- **DR-120 Performance:** 60fps (0.017 hours per frame) smooth animations
+- **DR-121 Reduced Motion:** Respect user preferences
 
 ### Micro-interactions
-- **Loading States:** Skeleton screens
-- **Success States:** Confirmation feedback
-- **Error States:** Clear error messages
-- **Empty States:** Helpful guidance
+- **DR-122 Loading States:** Skeleton screens
+- **DR-123 Success States:** Confirmation feedback
+- **DR-124 Error States:** Clear error messages
+- **DR-125 Empty States:** Helpful guidance
 
 ---
 
@@ -323,18 +325,19 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 **Note:** This project is developed on Windows using PowerShell and Cursor IDE. All file paths use Windows backslash notation. PowerShell is available for all command-line operations including Git, npm, and other development tools.
 
 ### Project Constants
-All website addresses, URLs, and domain-related constants are centralized in `constants.js`. This file contains:
-- Domain constants (limebird.org, subdomains including dev.limebird.org)
-- Website URLs (production, development, external)
-- Email configuration (SMTP, forwarding)
-- DNS records (Netlify IPs, Hover servers)
-- Environment settings (Windows, PowerShell, Cursor IDE)
-- Project paths (Windows file system)
-- Utility functions for URL validation and email generation
+- **DR-126 All website addresses, URLs, and domain-related constants are centralized in `constants.js`. This file contains:**
+- **DR-127 Domain constants** (limebird.org, subdomains including dev.limebird.org)
+- **DR-128 Website URLs** (production, development, external)
+- **DR-129 Email configuration** (SMTP, forwarding)
+- **DR-130 DNS records** (Netlify IPs, Hover servers)
+- **DR-131 Environment settings** (Windows, PowerShell, Cursor IDE)
+- **DR-132 Project paths** (Windows file system)
+- **DR-133 Utility functions** for URL validation and email generation
 
 **Reference:** `constants.js` - Single source of truth for all website addresses
 
 ### CSS Structure
+- **DR-134 CSS Structure:**
 ```
 styles\
 ├── base\
@@ -352,6 +355,7 @@ styles\
 ```
 
 ### Asset Organization
+- **DR-135 Asset Organization:**
 ```
 assets\
 ├── images\
@@ -364,11 +368,10 @@ assets\
 ```
 
 ### Constants File
-```
-constants.js - Centralized website addresses and configuration
-```
+- **DR-136 Constants File:** `constants.js - Centralized website addresses and configuration`
 
 ### Deployment Scripts
+- **DR-137 Deployment Scripts:**
 ```
 deploy-simple.ps1 - Manual deployment script with logging
 DEPLOYMENT_GUIDE.md - Complete deployment documentation
@@ -379,41 +382,41 @@ DEPLOYMENT_GUIDE.md - Complete deployment documentation
 ## Version Control
 
 ### Design Versioning
-- **Major:** Significant brand changes
-- **Minor:** Component updates
-- **Patch:** Bug fixes and refinements
+- **DR-138 Major:** Significant brand changes
+- **DR-139 Minor:** Component updates
+- **DR-140 Patch:** Bug fixes and refinements
 
 ### Change Log
-- **Date:** When changes were made
-- **Type:** Feature, bug fix, or enhancement
-- **Description:** What was changed and why
-- **Impact:** How it affects the user experience
+- **DR-141 Date:** When changes were made
+- **DR-142 Type:** Feature, bug fix, or enhancement
+- **DR-143 Description:** What was changed and why
+- **DR-144 Impact:** How it affects the user experience
 
 ### Deployment Philosophy
-- **Manual Control:** All deployments are intentional and manual
-- **Quality Assurance:** Changes reviewed before deployment
-- **Audit Trail:** Complete logging of deployment history
-- **Development Testing:** dev.limebird.org for pre-production testing
-- **No Automation:** No automatic deployments or triggers
+- **DR-145 Manual Control:** All deployments are intentional and manual
+- **DR-146 Quality Assurance:** Changes reviewed before deployment
+- **DR-147 Audit Trail:** Complete logging of deployment history
+- **DR-148 Development Testing:** dev.limebird.org for pre-production testing
+- **DR-149 No Automation:** No automatic deployments or triggers
 
 ---
 
 ## Design Review Process
 
 ### Pre-Implementation
-- [ ] Design mockups approved
-- [ ] Accessibility review completed
-- [ ] Performance considerations addressed
-- [ ] Responsive design tested
-- [ ] Development environment testing (dev--limebirdorg.netlify.app)
+- **DR-150 Design mockups approved**
+- **DR-151 Accessibility review completed**
+- **DR-152 Performance considerations addressed**
+- **DR-153 Responsive design tested**
+- **DR-154 Development environment testing** (dev--limebirdorg.netlify.app)
 
 ### Post-Implementation
-- [ ] Visual QA completed
-- [ ] Cross-browser testing done
-- [ ] Performance metrics met
-- [ ] Accessibility audit passed
-- [ ] Production deployment verified
-- [ ] Dev environment testing completed
+- **DR-155 Visual QA completed**
+- **DR-156 Cross-browser testing done**
+- **DR-157 Performance metrics met**
+- **DR-158 Accessibility audit passed**
+- **DR-159 Production deployment verified**
+- **DR-160 Dev environment testing completed**
 
 ---
 
