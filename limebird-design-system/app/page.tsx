@@ -1,103 +1,175 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Badge } from "@/components/ui/badge"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Progress } from "@/components/ui/progress"
+import { Switch } from "@/components/ui/switch"
+import { Checkbox } from "@/components/ui/checkbox"
+import { HomeIcon, UserIcon, EnvelopeIcon, BellIcon } from '@heroicons/react/24/outline'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-4xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Limebird Design System</h1>
+          <p className="text-lg text-gray-600">Complete component library with shadcn/ui</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Buttons */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Buttons</CardTitle>
+            <CardDescription>All button variants and sizes</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-wrap gap-4">
+              <Button>Default Button</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Button size="sm">Small</Button>
+              <Button size="default">Default</Button>
+              <Button size="lg">Large</Button>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Button>
+                <HomeIcon className="h-4 w-4 mr-2" />
+                With Icon
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Cards */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Cards</CardTitle>
+            <CardDescription>Content containers with header, content, and footer</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Product Card</CardTitle>
+                  <CardDescription>Taskmaster - Project Management Tool</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600">Streamline your project management with our intuitive tool.</p>
+                </CardContent>
+                <CardFooter>
+                  <Button size="sm">Learn More</Button>
+                </CardFooter>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Blog Post</CardTitle>
+                  <CardDescription>Latest insights and updates</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600">Discover the latest trends in project management and productivity.</p>
+                </CardContent>
+                <CardFooter>
+                  <Button variant="outline" size="sm">Read More</Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Form Elements */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Form Elements</CardTitle>
+            <CardDescription>Input fields, textareas, and form controls</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Name</label>
+              <Input placeholder="Enter your name" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Message</label>
+              <Textarea placeholder="Enter your message" />
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="terms" />
+              <label htmlFor="terms" className="text-sm">I agree to the terms</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Switch id="notifications" />
+              <label htmlFor="notifications" className="text-sm">Enable notifications</label>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Badges and Alerts */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Status Indicators</CardTitle>
+            <CardDescription>Badges, alerts, and progress indicators</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              <Badge>Default</Badge>
+              <Badge variant="secondary">Secondary</Badge>
+              <Badge variant="destructive">Error</Badge>
+              <Badge variant="outline">Outline</Badge>
+            </div>
+            <Alert>
+              <BellIcon className="h-4 w-4" />
+              <AlertDescription>
+                This is an informational alert. It provides important context to the user.
+              </AlertDescription>
+            </Alert>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Progress</label>
+              <Progress value={65} className="w-full" />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Icons */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Icons</CardTitle>
+            <CardDescription>Heroicons and icon usage</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap gap-4">
+              <div className="flex items-center space-x-2">
+                <HomeIcon className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">Home</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <UserIcon className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">User</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <EnvelopeIcon className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">Email</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <BellIcon className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">Notifications</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Footer */}
+        <div className="text-center text-sm text-gray-500">
+          <p>Limebird Design System - Built with shadcn/ui</p>
+          <p className="mt-2">All components are accessible, responsive, and ready for production use.</p>
+        </div>
+      </div>
     </div>
-  );
+  )
 }

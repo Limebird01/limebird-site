@@ -1,5 +1,5 @@
-# Simple deployment script with logging
-$logFile = "deployment.log"
+# Dev build script for testing dev environment build
+$logFile = "build-dev.log"
 
 # Create log entry function with dynamic timestamp
 function Write-Log {
@@ -28,9 +28,9 @@ function Write-SuccessLog {
     Write-Host "SUCCESS: $Message" -ForegroundColor Green
 }
 
-# Start deployment with timestamp
+# Start build with timestamp
 $startTime = Get-Date
-Write-Log "=== Starting DEV deployment at $($startTime.ToString('yyyy-MM-dd HH:mm:ss')) ==="
+Write-Log "=== Starting DEV build at $($startTime.ToString('yyyy-MM-dd HH:mm:ss')) ==="
 
 # Check if we're in the right directory
 Write-Log "Checking project directory..."
@@ -52,17 +52,16 @@ if ($currentBranch -ne "dev") {
 }
 Write-SuccessLog "Confirmed: On dev branch"
 
-# Check for uncommitted changes before build
+# Check for uncommitted changes
 Write-Log "Checking for uncommitted changes..."
 $status = git status --porcelain
-if (-not $status) {
-    Write-Log "No changes to deploy - exiting"
-    Write-Host "No changes to deploy" -ForegroundColor Yellow
-    exit 0
+if ($status) {
+    Write-Log "Found uncommitted changes:"
+    Write-Host $status -ForegroundColor Yellow
+    Write-Host "Consider committing changes before building" -ForegroundColor Yellow
+} else {
+    Write-Log "No uncommitted changes found"
 }
-
-Write-Log "Found changes to commit:"
-Write-Host $status -ForegroundColor Yellow
 
 
 
@@ -71,18 +70,18 @@ Write-Log "Cleaning up existing processes..."
 .\cleanup-dev.ps1 -Force
 Write-Log "Cleanup completed, starting build..."
 
-# Build the project with timing and better error handling
-Write-Log "Starting build process..."
+# Build the project with timing and error handling
+Write-Log "Starting dev build process..."
+
+# Start build timing
 $buildStartTime = Get-Date
-
-
 
 try {
     # Change to project directory
     Set-Location "limebird-site-new"
     
-    # Pre-flight checks for dev deployment
-    Write-Log "Running pre-flight checks for dev deployment..."
+    # Pre-flight checks for dev environment
+    Write-Log "Running pre-flight checks for dev environment..."
     
     # Check if npm is available
     Write-Log "Checking npm availability..."
@@ -127,18 +126,27 @@ try {
     }
     Write-SuccessLog "All required scripts found in package.json"
     
-    # Check if git remote is configured
-    Write-Log "Checking git remote configuration..."
-    $remoteCheck = git remote -v
-    if (-not $remoteCheck) {
-        Write-ErrorLog "No git remote configured"
-        Write-Host "No git remote configured! Set up remote repository first." -ForegroundColor Red
-        Set-Location ".."
-        exit 1
+    # Check if we're on dev branch (dev environment specific)
+    Write-Log "Checking if we're on dev branch..."
+    $currentBranch = git branch --show-current
+    if ($currentBranch -ne "dev") {
+        Write-Log "Not on dev branch - current branch: $currentBranch"
+        Write-Host "Warning: Not on dev branch. Consider switching to dev branch." -ForegroundColor Yellow
+    } else {
+        Write-SuccessLog "On dev branch"
     }
-    Write-SuccessLog "Git remote is configured"
     
-    # Set environment variable for build
+    # Check if dev domain is reachable (dev environment specific)
+    Write-Log "Checking dev domain connectivity..."
+    try {
+        $devCheck = Invoke-WebRequest -Uri "https://dev.limebird.org" -TimeoutSec 5 -ErrorAction Stop
+        Write-SuccessLog "Dev domain is reachable"
+    } catch {
+        Write-Log "Dev domain may not be reachable - this is normal for new deployments"
+        Write-Host "Info: Dev domain not reachable (normal for new deployments)" -ForegroundColor Cyan
+    }
+    
+    # Set environment variable for dev build
     $env:NEXT_PUBLIC_APP_URL = "https://dev.limebird.org"
     
     # Run linting first
@@ -147,14 +155,14 @@ try {
         npm run lint
         if ($LASTEXITCODE -ne 0) {
             Write-ErrorLog "Linting failed with exit code: $LASTEXITCODE"
-            Write-Host "Linting failed! Fix linting errors before deploying." -ForegroundColor Red
+            Write-Host "Linting failed! Fix linting errors before building." -ForegroundColor Red
             Set-Location ".."
             exit 1
         }
         Write-SuccessLog "Linting passed"
     } catch {
         Write-ErrorLog "Linting process failed with exception: $($_.Exception.Message)"
-        Write-Host "Linting process failed! Fix errors before deploying." -ForegroundColor Red
+        Write-Host "Linting process failed! Fix errors before building." -ForegroundColor Red
         Set-Location ".."
         exit 1
     }
@@ -165,14 +173,14 @@ try {
         npm run test
         if ($LASTEXITCODE -ne 0) {
             Write-ErrorLog "Unit tests failed with exit code: $LASTEXITCODE"
-            Write-Host "Unit tests failed! Fix test errors before deploying." -ForegroundColor Red
+            Write-Host "Unit tests failed! Fix test errors before building." -ForegroundColor Red
             Set-Location ".."
             exit 1
         }
         Write-SuccessLog "Unit tests passed"
     } catch {
         Write-ErrorLog "Unit tests process failed with exception: $($_.Exception.Message)"
-        Write-Host "Unit tests process failed! Fix errors before deploying." -ForegroundColor Red
+        Write-Host "Unit tests process failed! Fix errors before building." -ForegroundColor Red
         Set-Location ".."
         exit 1
     }
@@ -184,18 +192,19 @@ try {
         $buildDuration = $buildEndTime - $buildStartTime
         
         if ($LASTEXITCODE -eq 0) {
-            Write-SuccessLog "Build completed successfully in $($buildDuration.TotalSeconds.ToString('F1')) seconds"
-            Write-Host "Build completed in $($buildDuration.TotalSeconds.ToString('F1')) seconds" -ForegroundColor Green
+            Write-SuccessLog "Dev build completed successfully in $($buildDuration.TotalSeconds.ToString('F1')) seconds"
+            Write-Host "Dev build completed in $($buildDuration.TotalSeconds.ToString('F1')) seconds" -ForegroundColor Green
+            Write-Host "Build is ready for dev deployment" -ForegroundColor Green
         } else {
-            Write-ErrorLog "Build failed with exit code: $LASTEXITCODE"
-            Write-Host "Build failed! Fix errors before deploying." -ForegroundColor Red
+            Write-ErrorLog "Dev build failed with exit code: $LASTEXITCODE"
+            Write-Host "Dev build failed! Fix errors before proceeding." -ForegroundColor Red
             Write-Host "Check the build output above for errors." -ForegroundColor Red
             Set-Location ".."
             exit 1
         }
     } catch {
         Write-ErrorLog "Build process failed with exception: $($_.Exception.Message)"
-        Write-Host "Build process failed! Fix errors before deploying." -ForegroundColor Red
+        Write-Host "Build process failed! Fix errors before proceeding." -ForegroundColor Red
         Set-Location ".."
         exit 1
     }
@@ -209,74 +218,16 @@ try {
 # Return to root directory
 Set-Location ".."
 
-# Add and commit with timing
-Write-Log "Adding files to Git..."
-$gitAddStart = Get-Date
-git add .
-if ($LASTEXITCODE -ne 0) {
-    Write-ErrorLog "Git add failed"
-    Write-Host "Git add failed!" -ForegroundColor Red
-    exit 1
-}
-$gitAddEnd = Get-Date
-Write-SuccessLog "Files added to Git in $($($gitAddEnd - $gitAddStart).TotalSeconds.ToString('F1')) seconds"
-
-# Commit with timestamp
-$commitMessage = "Update website content ($(Get-Date -Format 'yyyy-MM-dd HH:mm'))"
-Write-Log "Committing with message: $commitMessage"
-$commitStart = Get-Date
-git commit -m $commitMessage
-if ($LASTEXITCODE -ne 0) {
-    Write-ErrorLog "Git commit failed"
-    Write-Host "Git commit failed!" -ForegroundColor Red
-    exit 1
-}
-$commitEnd = Get-Date
-Write-SuccessLog "Commit completed in $($($commitEnd - $commitStart).TotalSeconds.ToString('F1')) seconds"
-
-# Push with timing and retry logic
-Write-Log "Pushing to GitHub dev branch..."
-$pushStart = Get-Date
-$pushAttempts = 0
-$maxPushAttempts = 3
-
-do {
-    $pushAttempts++
-    Write-Log "Push attempt $pushAttempts of $maxPushAttempts"
-    
-    git push origin dev
-    $pushExitCode = $LASTEXITCODE
-    
-    if ($pushExitCode -eq 0) {
-        $pushEnd = Get-Date
-        $pushDuration = $pushEnd - $pushStart
-        Write-SuccessLog "Push completed successfully in $($pushDuration.TotalSeconds.ToString('F1')) seconds"
-        break
-    } else {
-        Write-ErrorLog "Push attempt $pushAttempts failed with exit code: $pushExitCode"
-        
-        if ($pushAttempts -lt $maxPushAttempts) {
-            Write-Log "Retrying push in 3 seconds..."
-            Start-Sleep -Seconds 3
-        } else {
-            Write-ErrorLog "All push attempts failed - deployment cancelled"
-            Write-Host "All push attempts failed! Check your internet connection and try again." -ForegroundColor Red
-            exit 1
-        }
-    }
-} while ($pushAttempts -lt $maxPushAttempts)
-
-
-
 # Final success message with timing
 $endTime = Get-Date
+$buildDuration = $endTime - $buildStartTime
 $totalDuration = $endTime - $startTime
-Write-SuccessLog "DEV deployment completed successfully in $($totalDuration.TotalSeconds.ToString('F1')) seconds"
-Write-Host "DEV deployment completed in $($totalDuration.TotalSeconds.ToString('F1')) seconds!" -ForegroundColor Green
-Write-Host "Dev site: https://dev--limebirdorg.netlify.app/" -ForegroundColor Cyan
-Write-Host "Note: Manual publish required in Netlify for dev.limebird.org" -ForegroundColor Yellow
+Write-SuccessLog "DEV build completed successfully in $($buildDuration.TotalSeconds.ToString('F1')) seconds"
+Write-Host "DEV build completed in $($buildDuration.TotalSeconds.ToString('F1')) seconds!" -ForegroundColor Green
+Write-Host "Dev site: https://dev.limebird.org" -ForegroundColor Cyan
+Write-Host "Use deploy-dev.ps1 to deploy to dev environment" -ForegroundColor Yellow
 
-# Close PowerShell after deployment
+# Close PowerShell after build
 Write-Log "Closing PowerShell..."
 Write-Host "Closing PowerShell..." -ForegroundColor Yellow
 Start-Sleep -Seconds 2

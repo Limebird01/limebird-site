@@ -35,6 +35,9 @@ export const WEBSITE_URLS = {
     DEV_SITE: 'https://dev.limebird.org',
     NETLIFY_SITE: 'https://limebirdorg.netlify.app',
     
+    // Local development
+    LOCAL: 'http://localhost:3000',
+    
     // GitHub repository
     GITHUB_REPO: 'https://github.com/limebird01/limebird-site',
     
@@ -43,6 +46,63 @@ export const WEBSITE_URLS = {
     
     // Hover domain management
     HOVER_DASHBOARD: 'https://hover.com'
+};
+
+// ============================================================================
+// ENVIRONMENT CONFIGURATION
+// ============================================================================
+
+export const ENVIRONMENT_CONFIG = {
+    // Environment detection
+    getCurrentEnvironment() {
+        if (typeof window !== 'undefined') {
+            // Client-side: detect from current URL
+            const hostname = window.location.hostname;
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'local';
+            } else if (hostname === 'dev.limebird.org') {
+                return 'dev';
+            } else if (hostname === 'limebird.org' || hostname === 'www.limebird.org') {
+                return 'production';
+            }
+        }
+        // Server-side: use environment variable
+        return process.env.NODE_ENV || 'development';
+    },
+    
+    // Get the appropriate APP_URL for current environment
+    getAppUrl() {
+        const env = this.getCurrentEnvironment();
+        switch (env) {
+            case 'local':
+                return WEBSITE_URLS.LOCAL;
+            case 'dev':
+                return WEBSITE_URLS.DEV_SITE;
+            case 'production':
+                return WEBSITE_URLS.PRODUCTION;
+            default:
+                return WEBSITE_URLS.LOCAL; // fallback
+        }
+    },
+    
+    // Environment-specific settings
+    LOCAL: {
+        APP_URL: WEBSITE_URLS.LOCAL,
+        API_BASE: WEBSITE_URLS.LOCAL,
+        ENVIRONMENT: 'local'
+    },
+    
+    DEV: {
+        APP_URL: WEBSITE_URLS.DEV_SITE,
+        API_BASE: WEBSITE_URLS.DEV_SITE,
+        ENVIRONMENT: 'dev'
+    },
+    
+    PRODUCTION: {
+        APP_URL: WEBSITE_URLS.PRODUCTION,
+        API_BASE: WEBSITE_URLS.PRODUCTION,
+        ENVIRONMENT: 'production'
+    }
 };
 
 // ============================================================================
