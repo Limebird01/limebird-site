@@ -62,29 +62,33 @@ if ($status) {
 } else {
     Write-Log "No uncommitted changes found"
 }
-
-
+Write-Host "DEBUG: Finished uncommitted changes check" -ForegroundColor Magenta
 
 # Clean up any existing processes before build
 Write-Log "Cleaning up existing processes..."
-.\cleanup-dev.ps1 -Force
-Write-Log "Cleanup completed, starting build..."
+Write-Host "DEBUG: About to run cleanup-dev.ps1 (SKIPPED)" -ForegroundColor Magenta
+# .\cleanup-dev.ps1 -Force
+Write-Host "DEBUG: Skipped cleanup-dev.ps1" -ForegroundColor Magenta
+Write-Log "Cleanup step skipped, starting build..."
 
 # Build the project with timing and error handling
 Write-Log "Starting dev build process..."
+Write-Host "DEBUG: Starting dev build process" -ForegroundColor Magenta
 
 # Start build timing
 $buildStartTime = Get-Date
 
 try {
     # Change to project directory
+    Write-Host "DEBUG: About to Set-Location limebird-site-new" -ForegroundColor Magenta
     Set-Location "limebird-site-new"
-    
+    Write-Host "DEBUG: After Set-Location limebird-site-new" -ForegroundColor Magenta
     # Pre-flight checks for dev environment
     Write-Log "Running pre-flight checks for dev environment..."
-    
+    Write-Host "DEBUG: Running pre-flight checks" -ForegroundColor Magenta
     # Check if npm is available
     Write-Log "Checking npm availability..."
+    Write-Host "DEBUG: Checking npm availability" -ForegroundColor Magenta
     try {
         $npmVersion = npm --version 2>$null
         if ($LASTEXITCODE -eq 0) {
@@ -101,9 +105,10 @@ try {
         Set-Location ".."
         exit 1
     }
-    
+    Write-Host "DEBUG: Finished npm check" -ForegroundColor Magenta
     # Check if dependencies are installed
     Write-Log "Checking if dependencies are installed..."
+    Write-Host "DEBUG: Checking node_modules" -ForegroundColor Magenta
     if (-not (Test-Path "node_modules")) {
         Write-ErrorLog "node_modules not found - dependencies not installed"
         Write-Host "Dependencies not installed! Run 'npm install' first." -ForegroundColor Red
@@ -111,9 +116,10 @@ try {
         exit 1
     }
     Write-SuccessLog "Dependencies are installed"
-    
+    Write-Host "DEBUG: Finished node_modules check" -ForegroundColor Magenta
     # Check if package.json has required scripts
     Write-Log "Checking package.json scripts..."
+    Write-Host "DEBUG: Checking package.json scripts" -ForegroundColor Magenta
     $packageJson = Get-Content "package.json" | ConvertFrom-Json
     $requiredScripts = @("lint", "test", "build")
     foreach ($script in $requiredScripts) {
@@ -125,9 +131,10 @@ try {
         }
     }
     Write-SuccessLog "All required scripts found in package.json"
-    
+    Write-Host "DEBUG: Finished package.json scripts check" -ForegroundColor Magenta
     # Check if we're on dev branch (dev environment specific)
     Write-Log "Checking if we're on dev branch..."
+    Write-Host "DEBUG: Checking dev branch" -ForegroundColor Magenta
     $currentBranch = git branch --show-current
     if ($currentBranch -ne "dev") {
         Write-Log "Not on dev branch - current branch: $currentBranch"
@@ -135,9 +142,10 @@ try {
     } else {
         Write-SuccessLog "On dev branch"
     }
-    
+    Write-Host "DEBUG: Finished dev branch check" -ForegroundColor Magenta
     # Check if dev domain is reachable (dev environment specific)
     Write-Log "Checking dev domain connectivity..."
+    Write-Host "DEBUG: Checking dev domain connectivity" -ForegroundColor Magenta
     try {
         $devCheck = Invoke-WebRequest -Uri "https://dev.limebird.org" -TimeoutSec 5 -ErrorAction Stop
         Write-SuccessLog "Dev domain is reachable"
@@ -145,12 +153,14 @@ try {
         Write-Log "Dev domain may not be reachable - this is normal for new deployments"
         Write-Host "Info: Dev domain not reachable (normal for new deployments)" -ForegroundColor Cyan
     }
-    
+    Write-Host "DEBUG: Finished dev domain connectivity check" -ForegroundColor Magenta
     # Set environment variable for dev build
+    Write-Host "DEBUG: Setting NEXT_PUBLIC_APP_URL" -ForegroundColor Magenta
     $env:NEXT_PUBLIC_APP_URL = "https://dev.limebird.org"
     
     # Run linting first
     Write-Log "Running linting check..."
+    Write-Host "DEBUG: Running npm run lint" -ForegroundColor Magenta
     try {
         npm run lint
         if ($LASTEXITCODE -ne 0) {
@@ -166,9 +176,10 @@ try {
         Set-Location ".."
         exit 1
     }
-    
+    Write-Host "DEBUG: Finished npm run lint" -ForegroundColor Magenta
     # Run unit tests
     Write-Log "Running unit tests..."
+    Write-Host "DEBUG: Running npm run test" -ForegroundColor Magenta
     try {
         npm run test
         if ($LASTEXITCODE -ne 0) {
@@ -184,8 +195,9 @@ try {
         Set-Location ".."
         exit 1
     }
-    
+    Write-Host "DEBUG: Finished npm run test" -ForegroundColor Magenta
     # Run build with timeout protection
+    Write-Host "DEBUG: Running npm run build" -ForegroundColor Magenta
     try {
         npm run build
         $buildEndTime = Get-Date
@@ -208,7 +220,9 @@ try {
         Set-Location ".."
         exit 1
     }
+    Write-Host "DEBUG: Finished npm run build" -ForegroundColor Magenta
 } catch {
+    Write-Host "DEBUG: Exception caught in build process" -ForegroundColor Red
     Write-ErrorLog "Build process exception: $($_.Exception.Message)"
     Write-Host "Build process failed with exception: $($_.Exception.Message)" -ForegroundColor Red
     Set-Location ".."

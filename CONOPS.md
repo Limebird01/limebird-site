@@ -1,4 +1,4 @@
-# [TO BE DEFINED] - Design Specification
+# Concept of Operations (CONOPS)
 
 > **Note:** This design specification uses placeholder text `[TO BE DEFINED]` for all brand-specific elements (colors, typography, logos, company names, etc.). This allows the design system to be flexible and ready for any brand direction. When brand decisions are made, simply replace the placeholders with actual brand values.
 
@@ -1526,3 +1526,16 @@ components/business/     // Add business-specific components
 *Last Updated: January 20, 2025*  
 *Version: 3.0*  
 *Next Review: February 20, 2025* 
+
+## Project Priorities Update (2024-07-22)
+
+### New Primary Characteristics
+- **Stability:** The system must be robust and avoid cryptic or hard-to-debug errors. Stability is prioritized over cutting-edge features.
+- **Ease of Maintenance:** The site should be easy to update, manage, and troubleshoot, especially for non-expert users or future maintainers.
+- **Efficient Content Updates:** Content should be simple to add or modify, with minimal risk of breaking the site or requiring deep technical knowledge.
+- **Reduced Complexity:** The project will move away from experimental or complex stacks (e.g., Next.js App Router, Contentlayer, MDX pipelines) in favor of a simpler, more predictable architecture.
+
+### Rationale for Change
+- The current setup (Next.js App Router + Contentlayer + MDX) has proven time-consuming to debug and maintain, with issues that are difficult to resolve, especially on Windows.
+- The time spent managing and troubleshooting outweighs the benefits of advanced features for the current project needs.
+- The new direction will focus on a system that is easy to operate, update, and keep stable, even if it means sacrificing some advanced or experimental features. 

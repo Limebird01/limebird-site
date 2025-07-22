@@ -428,10 +428,14 @@ function Show-CleanupSummary {
 
 # Main execution
 try {
+    Write-Host "DEBUG: Starting cleanup-dev.ps1" -ForegroundColor Magenta
     Write-Header
     
     # Clean up development processes
     Cleanup-DevelopmentProcesses
+    Write-Host "DEBUG: Finished Node.js cleanup" -ForegroundColor Magenta
+    Write-Host "DEBUG: Finished npm cleanup" -ForegroundColor Magenta
+    Write-Host "DEBUG: Finished npx cleanup" -ForegroundColor Magenta
     
     # Clean up terminal processes
     Cleanup-TerminalProcesses
@@ -443,6 +447,7 @@ try {
     Show-CleanupSummary
     
     Write-Log "Cleanup script completed successfully!" "SUCCESS"
+    Write-Host "DEBUG: Finished all cleanup steps, about to exit cleanup-dev.ps1" -ForegroundColor Magenta
     
 } catch {
     Write-Log "Error during cleanup: $($_.Exception.Message)" "ERROR"

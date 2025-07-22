@@ -68,8 +68,10 @@ Write-Host $status -ForegroundColor Yellow
 
 # Clean up any existing processes before build
 Write-Log "Cleaning up existing processes..."
-.\cleanup-dev.ps1 -Force
-Write-Log "Cleanup completed, starting build..."
+Write-Host "DEBUG: About to run cleanup-dev.ps1 (SKIPPED)" -ForegroundColor Magenta
+# .\cleanup-dev.ps1 -Force
+Write-Host "DEBUG: Skipped cleanup-dev.ps1" -ForegroundColor Magenta
+Write-Log "Cleanup step skipped, continuing deployment..."
 
 # Build the project with timing and better error handling
 Write-Log "Starting build process..."
