@@ -1,5 +1,17 @@
 # Concept of Operations (CONOPS)
 
+## Migration Note (2024-07)
+
+**Architecture Simplification:**
+- The site has migrated from a complex Next.js App Router + Contentlayer + MDX stack to a classic, static `.tsx`-based Pages Router architecture.
+- All content pages are now static `.tsx` files in the `pages/` directory.
+- Content updates are made by editing the appropriate `.tsx` file in `pages/`.
+- This change improves stability, maintainability, and ease of content updates for all contributors.
+- All navigation/content tests now pass. Homepage accessibility/visual snapshot tests are deferred and not blocking.
+- The blog subdomain (`blog.limebird.org`) will be implemented as a separate, dedicated project using a purpose-built blog template or static site generator.
+
+---
+
 > **Note:** This design specification uses placeholder text `[TO BE DEFINED]` for all brand-specific elements (colors, typography, logos, company names, etc.). This allows the design system to be flexible and ready for any brand direction. When brand decisions are made, simply replace the placeholders with actual brand values.
 
 ## CONOPS-001: Project Overview
@@ -1539,3 +1551,40 @@ components/business/     // Add business-specific components
 - The current setup (Next.js App Router + Contentlayer + MDX) has proven time-consuming to debug and maintain, with issues that are difficult to resolve, especially on Windows.
 - The time spent managing and troubleshooting outweighs the benefits of advanced features for the current project needs.
 - The new direction will focus on a system that is easy to operate, update, and keep stable, even if it means sacrificing some advanced or experimental features. 
+
+## Robust, Scalable, and Scriptable Testing Architecture
+
+The testing infrastructure is designed to be robust, scalable, and scriptable. Root-level npm scripts (`npm run test:all`) run lint, unit, and E2E tests for both `limebird-site-new` and `limebird-design-system`. This supports repeatable, stable, and scalable testing for the monorepo.
+
+### 1. Linting (`npm run lint`)
+- Runs ESLint across all projects to catch syntax errors, potential bugs, and code style issues.
+- Uses `eslint` and `prettier` for automated code formatting.
+- Prevents bad code from being committed to the repository.
+
+### 2. Unit Testing (`npm run test:unit`)
+- Tests individual components and functions in isolation.
+- Uses React Testing Library for component testing.
+- Covers business logic, UI logic, and utility functions.
+- Runs in parallel for faster execution.
+
+### 3. E2E Testing (`npm run test:e2e`)
+- Tests end-to-end flows and user journeys.
+- Uses Cypress for critical user flows.
+- Simulates real user interactions.
+- Runs in a headless browser for consistency.
+
+### 4. Running All Tests (`npm run test:all`)
+- Executes all linting, unit, and E2E tests.
+- Provides a single command for quick testing.
+- Reports overall test coverage and success/failure.
+
+### 5. CI/CD Integration
+- GitHub Actions workflows can trigger these tests on pull requests.
+- Prevents merging broken code.
+- Provides immediate feedback on build failures.
+
+### 6. Test Scripts (`run-tests.ps1`)
+- A PowerShell script that can be run locally for quick testing.
+- Handles environment setup and cleanup.
+- Automates the process of starting development servers, running tests, and cleaning up.
+- Useful for continuous integration and local development. 

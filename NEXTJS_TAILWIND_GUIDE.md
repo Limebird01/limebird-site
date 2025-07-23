@@ -1,5 +1,14 @@
 # 🚀 Next.js & Tailwind CSS Setup Guide
 
+## Migration Note (2024-07)
+
+**Main Site Architecture Update:**
+- The main site now uses a static `.tsx`-based Pages Router architecture (no Contentlayer/MDX).
+- All content is managed via `.tsx` files in the `pages/` directory.
+- The blog subdomain (`blog.limebird.org`) will be implemented as a separate project using the latest recommended setup.
+
+---
+
 ## 📋 Overview
 
 ### **Next.js**
@@ -141,147 +150,3 @@ module.exports = {
   },
 }
 ```
-
----
-
-## 🚀 Development Workflow
-
-### **✅ Starting Development:**
-```powershell
-# Start development server
-npm run dev
-
-# Open in browser
-Start-Process "http://localhost:3000"
-```
-
-### **✅ File-based Routing:**
-```jsx
-// pages/index.js - Home page (/)
-export default function Home() {
-  return <h1>Welcome to Limebird</h1>
-}
-
-// pages/about.js - About page (/about)
-export default function About() {
-  return <h1>About Limebird</h1>
-}
-
-// pages/blog/[slug].js - Dynamic blog posts (/blog/post-1)
-export default function BlogPost({ params }) {
-  return <h1>Blog Post: {params.slug}</h1>
-}
-```
-
-### **✅ Tailwind Breakpoints:**
-```css
-/* Responsive design */
-<div className="
-  w-full          /* Mobile: 100% width */
-  md:w-1/2        /* Tablet: 50% width */
-  lg:w-1/3        /* Desktop: 33% width */
-  xl:w-1/4        /* Large: 25% width */
-">
-```
-
-### **✅ Responsive Utilities:**
-```jsx
-// Hide/show based on screen size
-<div className="hidden md:block">Desktop only</div>
-<div className="block md:hidden">Mobile only</div>
-
-// Responsive text sizes
-<h1 className="text-2xl md:text-4xl lg:text-6xl">Responsive heading</h1>
-
-// Responsive spacing
-<div className="p-4 md:p-8 lg:p-12">Responsive padding</div>
-```
-
----
-
-## 📝 Blog Subdomain Implementation
-
-### **✅ For Blog Subdomain:**
-```powershell
-# Create blog project
-npx create-next-app@latest limebird-blog --typescript --tailwind --eslint
-
-# Navigate to project
-cd limebird-blog
-
-# Install additional dependencies
-npm install @heroicons/react react-icons
-npm install @headlessui/react @radix-ui/react-dialog
-
-# Initialize shadcn/ui
-npx shadcn-ui@latest init
-```
-
-### **✅ Blog-specific Features:**
-```jsx
-// Create components with brand styling
-<BlogCard>
-  <BlogImage src="/post-image.jpg" alt="Post title" />
-  <BlogContent>
-    <BlogTitle>Post Title</BlogTitle>
-    <BlogExcerpt>Post excerpt...</BlogExcerpt>
-    <BlogMeta>
-      <BlogDate>January 20, 2025</BlogDate>
-      <BlogCategory>Technology</BlogCategory>
-    </BlogMeta>
-  </BlogContent>
-</BlogCard>
-```
-
----
-
-## 🛠️ Development Tools
-
-### **✅ VS Code Extensions:**
-- **Tailwind CSS IntelliSense** - Autocomplete for Tailwind classes
-- **ES7+ React/Redux/React-Native snippets** - React shortcuts
-- **Prettier - Code formatter** - Consistent code formatting
-- **ESLint** - Code quality and error detection
-
-### **✅ Browser Extensions:**
-- **Tailwind CSS Debug Screens** - Visualize breakpoints
-- **React Developer Tools** - Component inspection
-- **Lighthouse** - Performance auditing
-
----
-
-## 📚 Resources
-
-### **✅ Next.js Documentation:**
-- [Next.js Official Docs](https://nextjs.org/docs)
-- [Next.js Examples](https://github.com/vercel/next.js/tree/canary/examples)
-
-### **✅ Tailwind CSS Documentation:**
-- [Tailwind CSS Official Docs](https://tailwindcss.com/docs)
-- [Tailwind UI Components](https://tailwindui.com/)
-
-### **✅ Tutorials:**
-- [Next.js Tutorial](https://nextjs.org/learn)
-- [Tailwind CSS Tutorial](https://tailwindcss.com/docs/guides/nextjs)
-
----
-
-## 🚀 Blog Sprint Preparation
-
-### **✅ Blog Sprint Preparation:**
-- [ ] Run `npx create-next-app@latest limebird-blog`
-- [ ] Install shadcn/ui components
-- [ ] Set up Tailwind with brand colors
-- [ ] Create blog-specific components
-- [ ] Implement search and filtering
-- [ ] Add content management features
-
-### **✅ Future Projects:**
-- [ ] Design system implementation
-- [ ] Product pages (Taskmaster)
-- [ ] Service pages (Tech support)
-- [ ] Portfolio and case studies
-
----
-
-*Status: Ready for Blog Sprint* 

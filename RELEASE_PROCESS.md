@@ -1,4 +1,8 @@
-# Next Steps: Promoting to Dev Environment
+# Release Process
+
+> For general operational guidance and day-to-day management, see [OPERATIONS.md](./OPERATIONS.md).
+
+# Release Process: Promoting to Dev Environment
 
 This checklist outlines the immediate actions required to safely promote the current codebase to the development environment (`dev.limebird.org`).
 
@@ -123,7 +127,7 @@ This checklist outlines the immediate actions required to safely promote the cur
   - Confirm all environment variables and secrets are set for production.
   - Ensure the `main` branch is up to date and protected.
 - [ ] **Deploy to Production:**
-  - Use `deploy-simple.ps1` to deploy to production.
+  - Use `deploy-prod.ps1` to deploy to production.
   - Monitor the site post-deployment for any issues.
 
 ## E. Ongoing Improvements
@@ -142,3 +146,5 @@ This checklist outlines the immediate actions required to safely promote the cur
 - [Sprint Plan: Site Simplification and Stabilization](./blog-sprint-plan.md)
 - [Updated CONOPS](./CONOPS.md)
 - [Defect Investigation: StructuredClone Error (Closed, Unfixed)](./defect-investigation-structured-clone-error.md) 
+
+Robust, scriptable testing architecture: npm scripts at the root run lint, unit, and E2E tests for both limebird-site-new and limebird-design-system. Mention test:all runs all tests for both packages. Reference run-tests.ps1 for automation. This ensures repeatable, stable, and scalable testing as part of deployment. 

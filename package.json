@@ -1,6 +1,20 @@
 {
   "dependencies": {
-    "contentlayer": "^0.3.4",
     "next": "^15.4.2"
+  },
+  "scripts": {
+    "dev": "cd limebird-site-new && concurrently \"next dev\"",
+    "build": "cd limebird-site-new && next build",
+    "start": "cd limebird-site-new && next start",
+    "lint": "cd limebird-site-new && npx next lint",
+    "test": "cd limebird-site-new && npx jest",
+    "test:watch": "cd limebird-site-new && npx jest --watch",
+    "test:coverage": "cd limebird-site-new && npx jest --coverage",
+    "e2e": "cd limebird-site-new && npx cypress run",
+    "e2e:open": "cd limebird-site-new && npx cypress open",
+    "lint:design-system": "cd limebird-design-system && npx next lint",
+    "test:design-system": "cd limebird-design-system && npx jest",
+    "e2e:design-system": "cd limebird-design-system && npx cypress run",
+    "test:all": "npm run lint && npm run test && npm run e2e && npm run lint:design-system && npm run test:design-system && npm run e2e:design-system"
   }
 }

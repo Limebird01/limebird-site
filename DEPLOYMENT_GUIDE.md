@@ -8,7 +8,7 @@ This guide explains how to deploy changes to the limebird.org website using the 
 
 ### Option 1: Production Deployment (Recommended)
 ```powershell
-.\deploy-simple.ps1
+.\deploy-prod.ps1
 ```
 
 ### Option 2: Development Deployment
@@ -26,7 +26,7 @@ git push origin dev   # for development
 
 ## Deployment Scripts
 
-### Production Script: `deploy-simple.ps1`
+### Production Script: `deploy-prod.ps1`
 - **Target:** Main branch → Production (limebird.org)
 - **Result:** Automatically published deployment
 - **Use for:** Live production changes
@@ -39,7 +39,7 @@ git push origin dev   # for development
 
 ## What the Deployment Scripts Do
 
-### Production Script (`deploy-simple.ps1`)
+### Production Script (`deploy-prod.ps1`)
 1. **Git Operations**
    - Checks for uncommitted changes
    - Generates auto-commit message with timestamp
@@ -104,7 +104,7 @@ After deployment, your changes will be available at:
 
 ### Production Deployment
 ```powershell
-.\deploy-simple.ps1
+.\deploy-prod.ps1
 ```
 
 ### Development Deployment
@@ -125,7 +125,7 @@ git push origin dev   # for development
 
 ### For Production Changes
 1. **Make changes** to your files
-2. **Run:** `.\deploy-simple.ps1`
+2. **Run:** `.\deploy-prod.ps1`
 3. **Result:** Changes live at limebird.org
 
 ### For Development Changes (Testing Against Dev Branch)
@@ -140,7 +140,7 @@ git push origin dev   # for development
 2. **Make changes** to your files
 3. **Deploy for testing:** `.\deploy-dev.ps1`
 4. **Test:** https://dev--limebirdorg.netlify.app/
-5. **When ready:** Switch to main branch and run `.\deploy-simple.ps1`
+5. **When ready:** Switch to main branch and run `.\deploy-prod.ps1`
 
 ### For Testing dev.limebird.org
 1. **Deploy to dev branch:** `.\deploy-dev.ps1`
@@ -161,7 +161,7 @@ git push origin dev   # for development
 **Production Testing (Live Site):**
 - **URL:** https://limebird.org
 - **Branch:** main
-- **Deploy with:** `.\deploy-simple.ps1`
+- **Deploy with:** `.\deploy-prod.ps1`
 - **Use for:** Quick fixes, minor changes
 
 ### Testing Workflow Examples:
@@ -178,7 +178,7 @@ git checkout dev
 ```powershell
 git checkout main
 # Make small change
-.\deploy-simple.ps1
+.\deploy-prod.ps1
 # Test at: https://limebird.org
 ```
 
@@ -274,7 +274,7 @@ If the script fails, you can deploy manually:
 1. **Make Changes:** Edit files in your local environment
 2. **Test Locally:** Verify changes work as expected
 3. **Review Changes:** Use `git status` and `git diff` to review
-4. **Deploy:** Run `.\deploy-simple.ps1` for production or `.\deploy-dev.ps1` for development
+4. **Deploy:** Run `.\deploy-prod.ps1` for production or `.\deploy-dev.ps1` for development
 5. **Verify Deployment:** Check the live site after deployment
 
 ### Commit Messages
@@ -304,7 +304,7 @@ If the script fails, you can deploy manually:
 
 The deployment scripts are intentionally simple and focused:
 
-### Production Script (`deploy-simple.ps1`)
+### Production Script (`deploy-prod.ps1`)
 - **Auto-commit messages** with timestamps
 - **Git operations** (add, commit, push to main)
 - **Colored console output** for easy reading
@@ -335,7 +335,7 @@ The deployment scripts are intentionally simple and focused:
 
 ### Production Workflow
 1. **Make changes** to files
-2. **Run:** `.\deploy-simple.ps1`
+2. **Run:** `.\deploy-prod.ps1`
 3. **Result:** Changes live at limebird.org (automatically published)
 
 ### Development Workflow (Testing Against Dev Branch)
@@ -350,7 +350,7 @@ The deployment scripts are intentionally simple and focused:
 2. **Make changes** to files
 3. **Deploy for testing:** `.\deploy-dev.ps1`
 4. **Test:** https://dev--limebirdorg.netlify.app/
-5. **When ready:** Switch to main branch and run `.\deploy-simple.ps1`
+5. **When ready:** Switch to main branch and run `.\deploy-prod.ps1`
 
 ### Switching Between Environments
 - **For production:** Keep main branch published

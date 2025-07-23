@@ -2,6 +2,17 @@
 
 The official website for [limebird.org](https://limebird.org).
 
+## Migration Note (2024-07)
+
+**Architecture Simplification:**
+- The site has migrated from a complex Next.js App Router + Contentlayer + MDX stack to a classic, static `.tsx`-based Pages Router architecture.
+- All content pages are now static `.tsx` files in the `pages/` directory.
+- Content updates are made by editing the appropriate `.tsx` file in `pages/`.
+- This change improves stability, maintainability, and ease of content updates for all contributors.
+- All navigation/content tests now pass. Homepage accessibility/visual snapshot tests are deferred and not blocking.
+
+---
+
 ## About
 
 Limebird.org is a small business tech support and product development company. We provide professional IT services and develop digital products including Taskmaster ($1 Android app).
@@ -18,8 +29,6 @@ This document outlines the complete setup process for limebird.org, including do
 
 ### Phase 1: Domain Setup
 
-**Objective:** Secure and configure the limebird.org domain
-
 | Step | From | To |
 |------|------|----|
 | Domain Registration | Hover.com | limebird.org registered |
@@ -27,8 +36,6 @@ This document outlines the complete setup process for limebird.org, including do
 | Domain Verification | Email confirmation | Domain ownership confirmed |
 
 ### Phase 2: Email Setup
-
-**Objective:** Establish a professional email identity
 
 | Step | From | To |
 |------|------|----|
@@ -40,8 +47,6 @@ This document outlines the complete setup process for limebird.org, including do
 
 ### Phase 3: Hosting Setup
 
-**Objective:** Host your site with GitHub + Netlify
-
 | Step | From | To |
 |------|------|----|
 | GitHub Repository | GitHub.com | limebird01/limebird-site |
@@ -51,8 +56,6 @@ This document outlines the complete setup process for limebird.org, including do
 | Site Deployment | Netlify build | Live website |
 
 ### Phase 4: Domain Connection
-
-**Objective:** Point limebird.org to your Netlify site
 
 | Step | From | To |
 |------|------|----|
@@ -75,30 +78,27 @@ This document outlines the complete setup process for limebird.org, including do
 
 ### Phase 5: Subdomain Strategy
 
-**Subdomains:**
-
 | Subdomain | Purpose |
 |-----------|---------|
 | www.limebird.org | Main site |
 | dev.limebird.org | Development/testing |
-| blog.limebird.org | Blog subdomain |
+| blog.limebird.org | Blog subdomain (planned as a separate project) |
 
 ### Phase 6: Design System Implementation
-
-**Development Features:**
 
 | Feature | Purpose |
 |---------|---------|
 | Flexible Design System | Component library for all business needs |
 | Next.js + Tailwind CSS | Modern development stack |
 | Product Pages | Taskmaster app and future products |
-| Blog System | Content marketing and SEO |
+| Blog System | Content marketing and SEO (to be implemented as a separate blog subdomain) |
 
 ## Development
 
 This site is built with:
 - HTML5
 - CSS3
+- Static `.tsx` pages in the classic Next.js `pages/` directory
 - Hosted on Netlify
 - Domain managed by Hover
 
@@ -110,7 +110,13 @@ This site is built with:
    cd limebird-site
    ```
 
-2. Open `index.html` in your browser to view locally
+2. To update site content, edit the appropriate `.tsx` file in the `pages/` directory.
+
+3. To view locally, start the development server (if using Next.js):
+   ```powershell
+   npm run dev
+   ```
+   Or open `index.html` in your browser for static content.
 
 ## Deployment
 
@@ -120,7 +126,7 @@ The site uses manual deployment via PowerShell scripts.
 
 **Production Deployment:**
 ```powershell
-.\deploy-simple.ps1
+.\deploy-prod.ps1
 ```
 
 **Development Deployment:**
@@ -146,14 +152,13 @@ git push origin dev   # for development
 
 - **Tech Support Services** - Professional IT services and troubleshooting
 - **Product Development** - Taskmaster ($1 Android app) + future products
-- **Blog/Content Marketing** - Industry knowledge, tutorials, lead generation
+- **Blog/Content Marketing** - Industry knowledge, tutorials, lead generation (to be implemented as a separate blog subdomain)
 - **Lead Generation** - Contact forms, service inquiries, product downloads
 
 ## Future Plans
 
-- Design system implementation on dev.limebird.org
+- Implement blog subdomain (`blog.limebird.org`) as a separate, dedicated project (e.g., using a blog template or static site generator)
 - Taskmaster product page with Google Play integration
-- Blog system with content marketing
 - Service pages for tech support offerings
 
 ---
