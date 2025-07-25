@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide explains how to deploy changes to the limebird.org website using the manual deployment scripts. The deployment process is intentionally manual to provide full control over when and what gets deployed.
+This guide explains how to deploy changes to the limebird.org website using the manual deployment scripts. The deployment process is intentionally manual to provide full control over when and what gets deployed. The site uses a classic Next.js Pages Router architecture with static .tsx pages and no Contentlayer, MDX, or App Router.
 
 ## Quick Start
 

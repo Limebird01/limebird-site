@@ -3,12 +3,7 @@
 ## Migration Note (2024-07)
 
 **Architecture Simplification:**
-- The site has migrated from a complex Next.js App Router + Contentlayer + MDX stack to a classic, static `.tsx`-based Pages Router architecture.
-- All content pages are now static `.tsx` files in the `pages/` directory.
-- Content updates are made by editing the appropriate `.tsx` file in `pages/`.
-- This change improves stability, maintainability, and ease of content updates for all contributors.
-- All navigation/content tests now pass. Homepage accessibility/visual snapshot tests are deferred and not blocking.
-- The blog subdomain (`blog.limebird.org`) will be implemented as a separate, dedicated project using a purpose-built blog template or static site generator.
+The site now uses a classic, stable Next.js Pages Router architecture with static `.tsx` files for all content pages. Content updates are made by editing the appropriate `.tsx` file in the `pages/` directory. All experimental features and dependencies (Contentlayer, MDX, App Router, cmdk, command palette, etc.) have been removed. The stack is: Next.js 14.x, React 18.x, TypeScript 4.x, Tailwind CSS, shadcn/ui and Radix UI components as needed, and manual deployment via PowerShell scripts. All navigation/content tests now pass. Homepage accessibility/visual snapshot tests are deferred and not blocking. The blog subdomain (`blog.limebird.org`) will be implemented as a separate, dedicated project using a purpose-built blog template or static site generator.
 
 ---
 
@@ -324,8 +319,7 @@ content/
   "zod": "^3.21.4"
 }
 ```
-- All experimental features and dependencies (Contentlayer, MDX, App Router) have been removed.
-- The project will remain on Next.js 14.x until the type generation bug in 15.x is resolved.
+All experimental and deprecated features (Contentlayer, MDX, App Router, cmdk, command palette, etc.) have been removed. The project will remain on Next.js 14.x until the type generation bug in 15.x is resolved.
 
 #### CONOPS-004.4.2: UI Dependencies:
 ```json
@@ -354,8 +348,8 @@ content/
 #### CONOPS-004.5.1: Scripts:
 ```json
 {
-  "dev": "concurrently \"contentlayer dev\" \"next dev\"",
-  "build": "contentlayer build && next build",
+  "dev": "next dev",
+  "build": "next build",
   "start": "next start",
   "lint": "next lint",
   "preview": "next build && next start"
@@ -423,7 +417,7 @@ content/
 - **Form handling** integration
 
 #### CONOPS-004.8.2: Performance Optimized:
-- **Next.js 13+** App Router
+- **Next.js 14.x** Pages Router (classic, stable)
 - **Image optimization** with Sharp
 - **Code splitting** and lazy loading
 - **Core Web Vitals** optimized
@@ -586,10 +580,9 @@ export const siteConfig: SiteConfig = {
 **✅ COMPLETE** - The `limebird-site-new` template is fully implemented with all business features:
 
 #### **✅ Core Infrastructure (100% Complete):**
-- **Next.js 13+** with App Router ✅
+- **Next.js 14.x** with classic Pages Router and TypeScript ✅
 - **TypeScript** configuration ✅
 - **Tailwind CSS** with custom design tokens ✅
-- **Contentlayer** for MDX content management ✅
 - **NextAuth.js** for authentication ✅
 - **Prisma** with SQLite database ✅
 - **Stripe** integration for payments ✅
@@ -1403,10 +1396,9 @@ cleanup-dev.bat - Batch version for server cleanup
 #### **✅ Fully Implemented (100%)**
 
 ##### **🏗️ Core Infrastructure:**
-- ✅ **Next.js 13+** with App Router and TypeScript
+- ✅ **Next.js 14.x** with classic Pages Router and TypeScript
 - ✅ **Complete template** - `limebird-site-new` with all features
 - ✅ **30+ shadcn/ui components** - Full component library
-- ✅ **Contentlayer** - MDX content management
 - ✅ **NextAuth.js** - Authentication system
 - ✅ **Prisma** - Database with SQLite
 - ✅ **Stripe** - Payment integration
@@ -1421,7 +1413,7 @@ cleanup-dev.bat - Batch version for server cleanup
 - ✅ **Accessibility** - WCAG 2.1 AA compliant
 
 ##### **📝 Content Management:**
-- ✅ **Blog system** - MDX with syntax highlighting
+- ✅ **Blog system** - (to be implemented as a separate project)
 - ✅ **Content editor** - Editor.js rich text editor
 - ✅ **Documentation** - Docs and guides sections
 - ✅ **SEO optimization** - Metadata and structured data

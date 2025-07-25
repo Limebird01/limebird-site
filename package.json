@@ -16,5 +16,9 @@
     "test:design-system": "cd limebird-design-system && npx jest",
     "e2e:design-system": "cd limebird-design-system && npx cypress run",
     "test:all": "npm run lint && npm run test && npm run e2e && npm run lint:design-system && npm run test:design-system && npm run e2e:design-system"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.73",
+    "@types/react-dom": "18.2.7"
   }
 }

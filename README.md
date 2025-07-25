@@ -5,18 +5,17 @@ The official website for [limebird.org](https://limebird.org).
 ## Migration Note (2024-07)
 
 **Architecture Simplification:**
-- The site has migrated from a complex Next.js App Router + Contentlayer + MDX stack to a classic, static `.tsx`-based Pages Router architecture.
-- All content pages are now static `.tsx` files in the `pages/` directory.
-- Content updates are made by editing the appropriate `.tsx` file in `pages/`.
-- This change improves stability, maintainability, and ease of content updates for all contributors.
+- The site now uses a classic, stable Next.js Pages Router architecture with static `.tsx` files for all content pages.
+- Content updates are made by editing the appropriate `.tsx` file in the `pages/` directory.
+- All experimental features and dependencies (Contentlayer, MDX, App Router, cmdk, command palette, etc.) have been removed.
+- The stack is: Next.js 14.x, React 18.x, TypeScript 4.x, Tailwind CSS, shadcn/ui and Radix UI components as needed, and manual deployment via PowerShell scripts.
 - All navigation/content tests now pass. Homepage accessibility/visual snapshot tests are deferred and not blocking.
 
 ---
 
 **2024-07-23 Update:**
 - The project now uses Next.js 14.x (see package.json for exact version).
-- All experimental features have been removed; only stable, documented Next.js features are used.
-- Contentlayer, MDX, and App Router are no longer used.
+- All experimental and deprecated features (Contentlayer, MDX, App Router, cmdk, command palette, etc.) have been removed.
 - The project will not upgrade to Next.js 15.x until a build-blocking type generation bug for dynamic routes is resolved (see sprint plan for details).
 - Stability and maintainability are prioritized over cutting-edge features.
 
@@ -103,7 +102,7 @@ This document outlines the complete setup process for limebird.org, including do
 ## Development
 
 This site is built with:
-- Next.js 14.x (stable, no experimental features)
+- Next.js 14.x (classic Pages Router, stable, no experimental features)
 - React 18
 - TypeScript
 - Tailwind CSS
