@@ -282,3 +282,40 @@ Would you like me to make this edit for you? If so, please confirm which layout 
 - The team will evaluate and potentially integrate a purpose-built blog template (e.g., Next.js blog starter, Astro blog, Hugo, etc.) as a future task.
 - This will be handled as a separate project or integration, allowing for faster setup, best practices, and easier upgrades without impacting the stability of the main site.
 - Once a template is selected, the blog will be integrated into the monorepo or deployed as a separate app, and navigation will be updated accordingly. 
+
+---
+
+## Next.js Versioning and Tooling Notes (2024-07-23)
+
+- **Current Next.js version:** 14.x (see package.json for exact version)
+- **Reason for not upgrading to Next.js 15.x:**
+  - Attempting to upgrade to Next.js 15.x resulted in a build-blocking type generation bug for dynamic routes (see `[postId]/page.tsx` in the editor feature).
+  - The bug is in Next.js’s generated types, not in project code, and has no current workaround.
+  - See assistant chat log for error details and troubleshooting steps.
+- **Action:** Remain on Next.js 14.x until the bug is resolved upstream or a stable workaround is available.
+- **Other tooling:** All dependencies are up to date except for those blocked by compatibility (see npm audit for vulnerabilities and upgrade notes).
+
+### Sprint Tasks Added (2024-07-23)
+
+1. Remove all experimental features from the codebase and standardize on stable, documented Next.js features only.
+2. Audit and update configuration files (e.g., next.config.mjs) to ensure only standard, non-experimental options are used throughout the project.
+3. Update project documentation to include notes on the current build of Next.js and related tools, including version numbers.
+4. Document the reasons for not upgrading to the most recent Next.js version, including the type generation bug and build-blocking issues encountered.
+
+--- 
+
+---
+
+## Build Status and Upgrade Rationale (2024-07-23)
+
+- The project builds and compiles successfully on Next.js 14.x, with only minor linter warnings and no fatal errors or type issues.
+- Previous attempts to upgrade to Next.js 15.x resulted in a build-blocking type generation bug for dynamic routes, which is not present in 14.x.
+- **Rationale:** Remain on Next.js 14.x for stability and maintainability until the type generation bug in 15.x is resolved upstream. This decision should be referenced for any future upgrade considerations.
+
+--- 
+
+### New Sprint Tasks (2024-07-24)
+
+- Implement full output logging for all test tools in build and deploy scripts (capture stdout/stderr to log files, add section headers, document log locations).
+- Always run test suites/scripts in the foreground or log output to files.
+- Improve cleanup-dev.ps1 reliability: add timeouts, robust try/catch, always call summary/exit, never kill self, forced exit at end. 

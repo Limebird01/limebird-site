@@ -12,6 +12,11 @@
 
 ---
 
+**2024-07-24 Update:**
+- All test tool output will be fully logged in build and deploy scripts for traceability and debugging.
+- Test suites/scripts will always be run in the foreground or have their output logged to files.
+- The cleanup-dev.ps1 script will be improved for reliability (timeouts, robust error handling, guaranteed exit).
+
 > **Note:** This design specification uses placeholder text `[TO BE DEFINED]` for all brand-specific elements (colors, typography, logos, company names, etc.). This allows the design system to be flexible and ready for any brand direction. When brand decisions are made, simply replace the placeholders with actual brand values.
 
 ## CONOPS-001: Project Overview
@@ -307,19 +312,20 @@ content/
 
 ### CONOPS-004.4: Template Technical Stack
 
-#### CONOPS-004.4.1: Core Dependencies:
+**Current Core Dependencies:**
 ```json
 {
-  "next": "13.3.2-canary.13",
+  "next": "^14.x.x",
   "react": "^18.2.0",
-  "typescript": "^5.0.0",
-  "tailwindcss": "^3.3.0",
-  "contentlayer": "^0.3.1",
-  "next-auth": "4.22.1",
+  "typescript": "^4.7.4",
+  "tailwindcss": "^3.3.1",
+  "next-auth": "^4.24.11",
   "prisma": "^4.13.0",
   "zod": "^3.21.4"
 }
 ```
+- All experimental features and dependencies (Contentlayer, MDX, App Router) have been removed.
+- The project will remain on Next.js 14.x until the type generation bug in 15.x is resolved.
 
 #### CONOPS-004.4.2: UI Dependencies:
 ```json
@@ -1588,3 +1594,24 @@ The testing infrastructure is designed to be robust, scalable, and scriptable. R
 - Handles environment setup and cleanup.
 - Automates the process of starting development servers, running tests, and cleaning up.
 - Useful for continuous integration and local development. 
+
+---
+
+## Known Issues & Upgrade Policy (2024-07-23)
+
+### Next.js 15.x Type Generation Bug
+- Attempts to upgrade to Next.js 15.x resulted in a build-blocking type generation bug for dynamic routes (e.g., `[postId]/page.tsx` in the editor feature).
+- The error occurs in Next.js’s generated types, not in project code, and has no current workaround.
+- Troubleshooting steps included:
+  - Verifying all dynamic route prop typings
+  - Cleaning and reinstalling all dependencies
+  - Upgrading/downgrading related packages (e.g., next-auth)
+  - Attempting to disable type checking for the affected file
+- None of these steps resolved the issue; the build only succeeds on Next.js 14.x.
+
+### Upgrade Policy
+- The project will remain on Next.js 14.x until the type generation bug in 15.x is resolved upstream.
+- This policy is documented in the sprint plan and should be referenced for any future upgrade considerations.
+- See the sprint plan and build logs for detailed troubleshooting history and rationale.
+
+--- 

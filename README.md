@@ -13,6 +13,13 @@ The official website for [limebird.org](https://limebird.org).
 
 ---
 
+**2024-07-23 Update:**
+- The project now uses Next.js 14.x (see package.json for exact version).
+- All experimental features have been removed; only stable, documented Next.js features are used.
+- Contentlayer, MDX, and App Router are no longer used.
+- The project will not upgrade to Next.js 15.x until a build-blocking type generation bug for dynamic routes is resolved (see sprint plan for details).
+- Stability and maintainability are prioritized over cutting-edge features.
+
 ## About
 
 Limebird.org is a small business tech support and product development company. We provide professional IT services and develop digital products including Taskmaster ($1 Android app).
@@ -96,8 +103,10 @@ This document outlines the complete setup process for limebird.org, including do
 ## Development
 
 This site is built with:
-- HTML5
-- CSS3
+- Next.js 14.x (stable, no experimental features)
+- React 18
+- TypeScript
+- Tailwind CSS
 - Static `.tsx` pages in the classic Next.js `pages/` directory
 - Hosted on Netlify
 - Domain managed by Hover

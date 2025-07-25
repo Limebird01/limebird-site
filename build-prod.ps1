@@ -163,60 +163,44 @@ try {
     
     # Run linting first
     Write-Log "Running linting check..."
-    try {
-        npm run lint
-        if ($LASTEXITCODE -ne 0) {
-            Write-ErrorLog "Linting failed with exit code: $LASTEXITCODE"
-            Write-Host "Linting failed! Fix linting errors before building." -ForegroundColor Red
-            Set-Location ".."
-            exit 1
-        }
-        Write-SuccessLog "Linting passed"
-    } catch {
-        Write-ErrorLog "Linting process failed with exception: $($_.Exception.Message)"
-        Write-Host "Linting process failed! Fix errors before building." -ForegroundColor Red
+    "==== LINT OUTPUT START ====" | Add-Content -Path $logFile
+    npm run lint 2>&1 | Tee-Object -FilePath $logFile -Append
+    "==== LINT OUTPUT END ====" | Add-Content -Path $logFile
+    if ($LASTEXITCODE -ne 0) {
+        Write-ErrorLog "Linting failed with exit code: $LASTEXITCODE"
+        Write-Host "Linting failed! Fix linting errors before building." -ForegroundColor Red
         Set-Location ".."
         exit 1
     }
-    
+    Write-SuccessLog "Linting passed"
     # Run unit tests
     Write-Log "Running unit tests..."
-    try {
-        npm run test
-        if ($LASTEXITCODE -ne 0) {
-            Write-ErrorLog "Unit tests failed with exit code: $LASTEXITCODE"
-            Write-Host "Unit tests failed! Fix test errors before building." -ForegroundColor Red
-            Set-Location ".."
-            exit 1
-        }
-        Write-SuccessLog "Unit tests passed"
-    } catch {
-        Write-ErrorLog "Unit tests process failed with exception: $($_.Exception.Message)"
-        Write-Host "Unit tests process failed! Fix errors before building." -ForegroundColor Red
+    "==== UNIT TEST OUTPUT START ====" | Add-Content -Path $logFile
+    npm run test 2>&1 | Tee-Object -FilePath $logFile -Append
+    "==== UNIT TEST OUTPUT END ====" | Add-Content -Path $logFile
+    if ($LASTEXITCODE -ne 0) {
+        Write-ErrorLog "Unit tests failed with exit code: $LASTEXITCODE"
+        Write-Host "Unit tests failed! Fix test errors before building." -ForegroundColor Red
         Set-Location ".."
         exit 1
     }
-    
+    Write-SuccessLog "Unit tests passed"
     # Run build with timeout protection
-    try {
-        npm run build
+    Write-Log "Running build..."
+    "==== BUILD OUTPUT START ====" | Add-Content -Path $logFile
+    npm run build 2>&1 | Tee-Object -FilePath $logFile -Append
+    "==== BUILD OUTPUT END ====" | Add-Content -Path $logFile
+    if ($LASTEXITCODE -eq 0) {
         $buildEndTime = Get-Date
         $buildDuration = $buildEndTime - $buildStartTime
-        
-        if ($LASTEXITCODE -eq 0) {
-            Write-SuccessLog "Production build completed successfully in $($buildDuration.TotalSeconds.ToString('F1')) seconds"
-            Write-Host "Production build completed in $($buildDuration.TotalSeconds.ToString('F1')) seconds" -ForegroundColor Green
-            Write-Host "Build is ready for production deployment" -ForegroundColor Green
-        } else {
-            Write-ErrorLog "Production build failed with exit code: $LASTEXITCODE"
-            Write-Host "Production build failed! Fix errors before proceeding." -ForegroundColor Red
-            Write-Host "Check the build output above for errors." -ForegroundColor Red
-            Set-Location ".."
-            exit 1
-        }
-    } catch {
-        Write-ErrorLog "Build process failed with exception: $($_.Exception.Message)"
-        Write-Host "Build process failed! Fix errors before proceeding." -ForegroundColor Red
+        Write-SuccessLog "Production build completed successfully in $($buildDuration.TotalSeconds.ToString('F1')) seconds"
+        Write-Host "Production build completed in $($buildDuration.TotalSeconds.ToString('F1')) seconds" -ForegroundColor Green
+        Write-Host "Build is ready for production deployment" -ForegroundColor Green
+        Write-Host "See full output in $logFile" -ForegroundColor Yellow
+    } else {
+        Write-ErrorLog "Production build failed with exit code: $LASTEXITCODE"
+        Write-Host "Production build failed! Fix errors before proceeding." -ForegroundColor Red
+        Write-Host "Check the build output above and in $logFile for errors." -ForegroundColor Red
         Set-Location ".."
         exit 1
     }

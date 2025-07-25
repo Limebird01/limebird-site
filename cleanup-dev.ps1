@@ -431,24 +431,53 @@ try {
     Write-Host "DEBUG: Starting cleanup-dev.ps1" -ForegroundColor Magenta
     Write-Header
     
-    # Clean up development processes
-    Cleanup-DevelopmentProcesses
+    # Clean up development processes with timeout
+    try {
+        $cleanupJob = Start-Job { Cleanup-DevelopmentProcesses }
+        if (-not (Wait-Job $cleanupJob -Timeout 10)) {
+            Write-Log "Timeout during Cleanup-DevelopmentProcesses" "WARNING"
+            Stop-Job $cleanupJob
+        }
+    } catch {
+        Write-Log "Error during Cleanup-DevelopmentProcesses: $($_.Exception.Message)" "ERROR"
+    }
     Write-Host "DEBUG: Finished Node.js cleanup" -ForegroundColor Magenta
     Write-Host "DEBUG: Finished npm cleanup" -ForegroundColor Magenta
     Write-Host "DEBUG: Finished npx cleanup" -ForegroundColor Magenta
     
-    # Clean up terminal processes
-    Cleanup-TerminalProcesses
+    # Clean up terminal processes, skip self
+    try {
+        $currentPid = $PID
+        $skipNames = @("powershell", "pwsh")
+        Cleanup-TerminalProcesses
+        # Remove self from process kill list if present
+        # (Handled in Cleanup-TerminalProcesses logic)
+    } catch {
+        Write-Log "Error during Cleanup-TerminalProcesses: $($_.Exception.Message)" "ERROR"
+    }
     
-    # Clean up ports
-    Cleanup-DevelopmentPorts
+    # Clean up ports with timeout
+    try {
+        $portJob = Start-Job { Cleanup-DevelopmentPorts }
+        if (-not (Wait-Job $portJob -Timeout 10)) {
+            Write-Log "Timeout during Cleanup-DevelopmentPorts" "WARNING"
+            Stop-Job $portJob
+        }
+    } catch {
+        Write-Log "Error during Cleanup-DevelopmentPorts: $($_.Exception.Message)" "ERROR"
+    }
     
     # Show summary
-    Show-CleanupSummary
+    try {
+        Show-CleanupSummary
+    } catch {
+        Write-Log "Error during Show-CleanupSummary: $($_.Exception.Message)" "ERROR"
+    }
     
     Write-Log "Cleanup script completed successfully!" "SUCCESS"
     Write-Host "DEBUG: Finished all cleanup steps, about to exit cleanup-dev.ps1" -ForegroundColor Magenta
     
+    exit 0
 } catch {
     Write-Log "Error during cleanup: $($_.Exception.Message)" "ERROR"
     Write-Log "Stack trace: $($_.ScriptStackTrace)" "ERROR"
