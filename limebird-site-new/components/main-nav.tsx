@@ -49,7 +49,12 @@ export function MainNav({ items, children }: MainNavProps) {
 
       {/* Mobile Navigation */}
       {showMobileMenu && items && (
-        <MobileNav items={items}>{children}</MobileNav>
+        <MobileNav 
+          items={items} 
+          onClose={() => setShowMobileMenu(false)}
+        >
+          {children}
+        </MobileNav>
       )}
     </div>
   );
