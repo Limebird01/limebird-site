@@ -1,9 +1,23 @@
 # Concept of Operations (CONOPS)
 
-## Migration Note (2024-07)
+## Migration Note (2024-07-26)
 
 **Architecture Simplification:**
 The site now uses a classic, stable Next.js Pages Router architecture with static `.tsx` files for all content pages. Content updates are made by editing the appropriate `.tsx` file in the `pages/` directory. All experimental features and dependencies (Contentlayer, MDX, App Router, cmdk, command palette, etc.) have been removed. The stack is: Next.js 14.x, React 18.x, TypeScript 4.x, Tailwind CSS, shadcn/ui and Radix UI components as needed, and manual deployment via PowerShell scripts. All navigation/content tests now pass. Homepage accessibility/visual snapshot tests are deferred and not blocking. The blog subdomain (`blog.limebird.org`) will be implemented as a separate, dedicated project using a purpose-built blog template or static site generator.
+
+**Deployment Issues Resolved (2024-07-26):**
+- ✅ **Git submodule conflicts** - Converted `limebird-site-new` from submodule to regular directory
+- ✅ **Node.js version mismatches** - Updated to Node.js 18.20.2 for Next.js compatibility
+- ✅ **Next.js server-side rendering** - Configured Netlify with `@netlify/plugin-nextjs` plugin
+- ✅ **Netlify build settings** - Set correct base directory, build command, and publish directory
+- ✅ **All URLs working** - `limebird.org`, `dev--limebirdorg.netlify.app`, `dev.limebird.org`
+
+**Current Status:**
+- ✅ **Local development server** working correctly
+- ✅ **Dev deployment** successful and functional with automatic deploys
+- ✅ **Build process** stable and reliable
+- ✅ **Documentation** updated and aligned with current state
+- ✅ **Ready for production deployment** when needed
 
 ---
 
@@ -37,6 +51,8 @@ The site now uses a classic, stable Next.js Pages Router architecture with stati
 - **Deployment:** Manual PowerShell script (deploy-simple.ps1)
 - **SSL:** Let's Encrypt certificates (automatic via Netlify)
 - **Project Management:** Markdown-based sprint plans and task tracking
+- **Development Environment:** dev--limebirdorg.netlify.app (fully functional)
+- **Build Configuration:** Next.js 18.20.2 with server-side rendering support
 
 ### Subdomain Strategy
 - **Production:** www.limebird.org (main site)
@@ -76,7 +92,7 @@ The site now uses a classic, stable Next.js Pages Router architecture with stati
 - **SEO content** - Industry keywords, lead generation
 
 #### CONOPS-002.2.4: User Dashboard:
-- **User authentication** - NextAuth.js integration
+- **User authentication** - NextAuth.js integration (**admin-only access; customer registration disabled**)
 - **Content management** - Blog post editor with Editor.js
 - **User settings** - Profile and account management
 - **Billing integration** - Stripe payment processing
@@ -1074,6 +1090,7 @@ import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
 ### CONOPS-014.3: Environment Workflow
 
 #### CONOPS-014.3.1: Development Workflow:
+- **Admin login only:** Only the site owner/editor can log in to access dashboard and content management features. Customer registration is disabled by default.
 - **DR-101 Switch to dev branch:** `git checkout dev`
 - **DR-102 Make changes** to files
 - **DR-103 Deploy for testing:** `.\deploy-dev.ps1`
@@ -1625,3 +1642,7 @@ The testing infrastructure is designed to be robust, scalable, and scriptable. R
 7. Retry Netlify deploy; it should now succeed.
 
 **Tip:** Always check for submodule state and .gitignore rules when restructuring project directories. 
+
+## Future Expansion
+
+- The authentication system is flexible and can be expanded to support customer-facing accounts and user dashboards in the future as business needs evolve. 

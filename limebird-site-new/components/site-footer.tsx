@@ -53,8 +53,12 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           </p>
         </div>
         <nav className="flex gap-4 text-sm">
+          <Link href="/about">About</Link>
           <Link href="/services">Services</Link>
           <Link href="/products">Products</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/docs">Docs</Link>
+          <Link href="/contact">Contact</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/privacy">Privacy</Link>
         </nav>
