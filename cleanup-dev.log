@@ -1037,3 +1037,37 @@
 [2025-07-24 11:01:21] [DEBUG]   - PID: 42232, CPU: 0.03s, Memory: 8.23MB
 [2025-07-24 11:01:21] [DEBUG]   - PID: 42808, CPU: 0.05s, Memory: 8.3MB
 [2025-07-24 11:01:21] [INFO] Gracefully stopping 12 conhost processes...
+[2025-07-26 11:33:19] [INFO] === Limebird.org Development Environment Cleanup ===
+[2025-07-26 11:33:19] [INFO] Started at: 07/26/2025 11:33:19
+[2025-07-26 11:33:19] [INFO] Force mode: False
+[2025-07-26 11:33:19] [INFO] Verbose mode: False
+[2025-07-26 11:33:19] [INFO] Selective mode: False
+[2025-07-26 11:33:19] [INFO] Log file: C:\Users\limeb\Projects\Limebird_org\cleanup-dev.log
+[2025-07-26 11:33:19] [INFO] === Cleaning Terminal Processes ===
+[2025-07-26 11:33:20] [INFO] Cleaning up Command Prompt windows...
+[2025-07-26 11:33:20] [INFO] Found 4 cmd processes
+[2025-07-26 11:33:20] [DEBUG]   - PID: 18008, CPU: 0.02s, Memory: 6.11MB
+[2025-07-26 11:33:20] [DEBUG]   - PID: 41032, CPU: 0.03s, Memory: 5.79MB
+[2025-07-26 11:33:20] [DEBUG]   - PID: 60200, CPU: 0.02s, Memory: 5.79MB
+[2025-07-26 11:33:20] [DEBUG]   - PID: 62636, CPU: 0.02s, Memory: 6.05MB
+[2025-07-26 11:33:20] [INFO] Gracefully stopping 4 cmd processes...
+[2025-07-26 11:33:21] [SUCCESS] Successfully stopped all cmd processes
+[2025-07-26 11:33:21] [INFO] Cleaning up Console Host processes...
+[2025-07-26 11:33:21] [INFO] Found 16 conhost processes
+[2025-07-26 11:33:21] [DEBUG]   - PID: 6824, CPU: 0.27s, Memory: 6.41MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 27604, CPU: 1.56s, Memory: 7.53MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 40956, CPU: 6.92s, Memory: 7.55MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 43980, CPU: 0.16s, Memory: 7.56MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 46300, CPU: 3.09s, Memory: 12.34MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 47160, CPU: 0.3s, Memory: 7.52MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 54528, CPU: 0.03s, Memory: 7.9MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 57420, CPU: 0.03s, Memory: 7.59MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 57560, CPU: 0.08s, Memory: 7.54MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 57876, CPU: 0.05s, Memory: 7.55MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 59840, CPU: 0.16s, Memory: 9.81MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 60152, CPU: 0.03s, Memory: 7.52MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 61176, CPU: 6.25s, Memory: 7.57MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 61988, CPU: 0s, Memory: 7.54MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 63348, CPU: 0.11s, Memory: 7.66MB
+[2025-07-26 11:33:21] [DEBUG]   - PID: 64836, CPU: 0.2s, Memory: 7.95MB
+[2025-07-26 11:33:21] [INFO] Gracefully stopping 16 conhost processes...

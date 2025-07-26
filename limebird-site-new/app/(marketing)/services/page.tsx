@@ -1,6 +1,8 @@
+import { PageContainer } from "@/components/page-container";
+
 export default function ServicesPage() {
   return (
-    <main className="container max-w-3xl py-6 lg:py-12">
+    <PageContainer>
       <h1 className="mb-6 text-3xl font-bold">Services</h1>
       <p className="mb-4 text-lg text-gray-600">
         Professional tech support and IT services for businesses and individuals.
@@ -11,6 +13,6 @@ export default function ServicesPage() {
           We&apos;re currently building out our services page. Check back soon for detailed information about our tech support offerings, pricing, and how we can help with your IT needs.
         </p>
       </div>
-    </main>
+    </PageContainer>
   );
 } 
