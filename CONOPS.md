@@ -1607,3 +1607,21 @@ The testing infrastructure is designed to be robust, scalable, and scriptable. R
 - See the sprint plan and build logs for detailed troubleshooting history and rationale.
 
 --- 
+
+## Troubleshooting: Submodule and Deployment Issues
+
+### Problem
+- The `limebird-site-new` directory was previously a git submodule, which caused Netlify deploys to fail with errors like:
+  > fatal: No url found for submodule path 'limebird-site-new' in .gitmodules
+- The directory did not appear as a regular folder on GitHub, and changes could not be pushed or deployed.
+
+### Resolution Steps
+1. Remove any `.gitmodules` file or submodule entry (if present).
+2. Run `git rm --cached limebird-site-new` to remove the submodule reference from git's index.
+3. Delete the `.git` directory inside `limebird-site-new` (if present) to remove submodule state.
+4. Re-add the directory as a regular folder: `git add limebird-site-new -A`.
+5. Commit and push: `git commit -m "Restore limebird-site-new as a regular directory after submodule removal" && git push origin dev`.
+6. Confirm on GitHub that `limebird-site-new` appears as a normal folder.
+7. Retry Netlify deploy; it should now succeed.
+
+**Tip:** Always check for submodule state and .gitignore rules when restructuring project directories. 
